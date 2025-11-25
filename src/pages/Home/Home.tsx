@@ -41,7 +41,7 @@ export function Component() {
           <HStack className="gap-2 items-center">
             <Icon icon={Code2} className="size-8 text-brand-600 dark:text-brand-400" />
             <Title size="xl" className="font-heading font-bold">
-              React Skeleton
+              SpaceNow
             </Title>
           </HStack>
 
@@ -90,14 +90,12 @@ export function Component() {
 
             <VStack className="gap-4">
               <Title size="4xl" className="font-heading font-black leading-tight">
-                Construa aplicações modernas{" "}
-                <Text as="span" className="text-brand-600 dark:text-brand-400">
-                  mais rápido
-                </Text>
+                Explore o universo com dados reais da NASA
               </Title>
               <Text className="leading-relaxed">
-                Um template completo com React 19, TypeScript, Vite, Tailwind CSS e mais de 80
-                componentes shadcn/ui prontos para uso. Configure seu projeto em minutos.
+                SpaceNow é uma plataforma temática de exploração espacial que reúne e apresenta
+                fenômenos cósmicos com dados fornecidos pela NASA — visualizações, indicadores e
+                painéis interativos para pesquisadores e entusiastas.
               </Text>
             </VStack>
 
@@ -150,7 +148,7 @@ export function Component() {
                       <Text as="span" className="text-green-400">
                         $
                       </Text>{" "}
-                      git clone react-skeleton
+                      git clone https://github.com/GabrielCirqueira/SpaceNow.git
                     </Text>
                     <Text className="text-zinc-400">
                       <Text as="span" className="text-green-400">
@@ -425,11 +423,11 @@ export function Component() {
               <HStack className="gap-2 items-center">
                 <Icon icon={Code2} className="size-7 text-brand-600 dark:text-brand-400" />
                 <Title size="lg" className="font-heading font-bold text-zinc-900 dark:text-white">
-                  React Skeleton
+                  SpaceNow
                 </Title>
               </HStack>
               <Text className="text-zinc-600">
-                Template moderno para aplicações React com TypeScript, Vite e Tailwind CSS
+                Plataforma temática para exploração espacial com visualizações e dados da NASA
               </Text>
             </VStack>
 
@@ -515,7 +513,7 @@ export function Component() {
           <Box className="mt-12 pt-8 border-t border-zinc-200">
             <HStack className="justify-between items-center flex-wrap gap-4">
               <Text className="text-zinc-500 dark:text-zinc-500">
-                © 2025 React Skeleton. Todos os direitos reservados.
+                © 2025 SpaceNow. Todos os direitos reservados.
               </Text>
               <HStack className="gap-4">
                 <Link

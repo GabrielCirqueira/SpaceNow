@@ -6,7 +6,7 @@ RED    := \033[0;31m
 RESET  := \033[0m
 
 help:
-	@echo "$(GREEN)React Skeleton - Comandos Disponíveis$(RESET)"
+	@echo "$(GREEN)SpaceNow - Comandos Disponíveis$(RESET)"
 	@echo ""
 	@echo "$(YELLOW)🚀 Setup Inicial:$(RESET)"
 	@echo "  make setup            - Setup completo (instala deps + hooks + valida + inicia dev)"
@@ -54,7 +54,7 @@ help:
 	@echo ""
 
 setup:
-	@echo "$(GREEN)🎉 Iniciando setup completo do React Skeleton...$(RESET)"
+	@echo "$(GREEN)🎉 Iniciando setup completo do SpaceNow...$(RESET)"
 	@echo ""
 	@echo "$(YELLOW)Passo 1/6: Instalando dependências...$(RESET)"
 	@npm install

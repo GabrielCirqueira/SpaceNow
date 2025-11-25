@@ -1,4 +1,4 @@
-# 🛠️ CLI Utilities - React Skeleton
+# 🛠️ CLI Utilities - SpaceNow
 
 Coleção de scripts utilitários para acelerar o desenvolvimento.
 

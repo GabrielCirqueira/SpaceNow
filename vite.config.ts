@@ -1,9 +1,12 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port: 1010,
+  },
   resolve: {
     alias: [
       { find: "@layouts", replacement: path.resolve(__dirname, "src", "layouts") },

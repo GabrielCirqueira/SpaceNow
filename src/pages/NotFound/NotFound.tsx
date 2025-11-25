@@ -44,7 +44,7 @@ export function Component() {
           </Button>
         </VStack>
 
-        <Text className="text-typography-400 text-sm mt-8">Erro 404 · React Skeleton</Text>
+        <Text className="text-typography-400 text-sm mt-8">Erro 404 · SpaceNow</Text>
       </VStack>
     </AppContainer>
   );

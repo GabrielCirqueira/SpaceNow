@@ -1,5 +1,6 @@
 {
-  "name": "react-skeleton",
+  "name": "spacenow",
+  "description": "SpaceNow é uma plataforma temática de exploração espacial que apresenta dados reais fornecidos de fenômenos cósmicos pela NASA.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
