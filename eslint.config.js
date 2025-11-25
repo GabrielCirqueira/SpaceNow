@@ -15,10 +15,12 @@ export default [
       'build/**',
       'node_modules/**',
       '*.config.js',
+      '*.prettierrc.cjs',
       '*.config.cjs',
       '.husky/**',
       'coverage/**',
       'src/shadcn/**',
+      'scripts/**',
     ],
   },
 
@@ -171,8 +173,11 @@ export default [
         'warn',
         {
           endOfLine: 'auto',
+          semi: false,
         },
       ],
+      // ensure indent rule reports as warnings (already configured) and keep other stylistic rules as warnings
+      'semi': ['warn', 'never'],
     },
   },
 ];

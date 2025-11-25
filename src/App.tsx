@@ -1,11 +1,11 @@
-import { ThemeProvider } from "@/contexts";
-import { MainLayout } from "@layouts";
+import { ThemeProvider } from "@/contexts"
+import { MainLayout } from "@layouts"
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from "react-router-dom";
+} from "react-router-dom"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,12 +16,12 @@ const router = createBrowserRouter(
       </Route>
     </Route>
   )
-);
+)
 
 export default function App() {
   return (
     <ThemeProvider>
       <RouterProvider router={router} />
     </ThemeProvider>
-  );
+  )
 }

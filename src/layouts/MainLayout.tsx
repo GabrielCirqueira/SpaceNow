@@ -1,10 +1,10 @@
-import { Box } from "@shadcn/layout";
-import { cn } from "@shadcn/lib/utils";
-import * as React from "react";
-import { Outlet } from "react-router-dom";
+import { Box } from "@shadcn/layout"
+import { cn } from "@shadcn/lib/utils"
+import * as React from "react"
+import { Outlet } from "react-router-dom"
 
 export interface MainLayoutProps {
-  className?: string;
+  className?: string
 }
 
 export const MainLayout = React.forwardRef<HTMLDivElement, MainLayoutProps>(
@@ -15,8 +15,8 @@ export const MainLayout = React.forwardRef<HTMLDivElement, MainLayoutProps>(
           <Outlet />
         </Box>
       </Box>
-    );
+    )
   }
-);
+)
 
-MainLayout.displayName = "MainLayout";
+MainLayout.displayName = "MainLayout"

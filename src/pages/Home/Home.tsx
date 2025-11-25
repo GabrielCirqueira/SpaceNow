@@ -1,13 +1,13 @@
-import { useTheme } from "@/contexts";
-import { AppContainer } from "@/layouts";
-import { Badge } from "@/shadcn/components/ui/badge";
-import { Button } from "@/shadcn/components/ui/button";
-import { Card } from "@/shadcn/components/ui/card";
-import { Dialog, DialogContent } from "@/shadcn/components/ui/dialog";
-import { Icon } from "@/shadcn/components/ui/icon";
-import { Box, Container, Footer, Grid, HStack, VStack } from "@/shadcn/components/ui/layout";
-import { Link } from "@/shadcn/components/ui/link";
-import { Text, Title } from "@/shadcn/components/ui/typography";
+import { useTheme } from "@/contexts"
+import { AppContainer } from "@/layouts"
+import { Badge } from "@/shadcn/components/ui/badge"
+import { Button } from "@/shadcn/components/ui/button"
+import { Card } from "@/shadcn/components/ui/card"
+import { Dialog, DialogContent } from "@/shadcn/components/ui/dialog"
+import { Icon } from "@/shadcn/components/ui/icon"
+import { Box, Container, Footer, Grid, HStack, VStack } from "@/shadcn/components/ui/layout"
+import { Link } from "@/shadcn/components/ui/link"
+import { Text, Title } from "@/shadcn/components/ui/typography"
 import {
   Award,
   BarChart,
@@ -27,12 +27,12 @@ import {
   Terminal,
   Users,
   Zap,
-} from "lucide-react";
-import { useState } from "react";
+} from "lucide-react"
+import { useState } from "react"
 
 export function Component() {
-  const { theme, toggleTheme } = useTheme();
-  const [showModal, setShowModal] = useState(false);
+  const { theme, toggleTheme } = useTheme()
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <AppContainer paddingX="0" className="min-h-screen transition-colors duration-500 w-full">
@@ -617,5 +617,5 @@ export function Component() {
         </DialogContent>
       </Dialog>
     </AppContainer>
-  );
+  )
 }
