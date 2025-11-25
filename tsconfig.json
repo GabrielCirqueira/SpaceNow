@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@pages": ["src/pages"],
+      "@pages/*": ["src/pages/*"],
+      "@layouts": ["src/layouts"],
+      "@layouts/*": ["src/layouts/*"],
+      "@shadcn/*": [
+        "src/shadcn/components/ui/*",
+        "src/shadcn/*"
+      ],
+      "@shadcn/lib/*": ["src/shadcn/lib/*"],
+      "@shadcn/hooks/*": ["src/shadcn/hooks/*"],
+  "@shadcn/components/*": ["src/shadcn/components/ui/*"],
+  "@shadcn/components": ["src/shadcn/components/ui"],
+  "@shadcn/typography/*": ["src/shadcn/components/ui/typography/*"],
+  "@shadcn/typography": ["src/shadcn/components/ui/typography"],
+      "@shadcn/layout": ["src/shadcn/components/ui/layout"]
+    }
+  },
+  "include": ["src"]
+}
