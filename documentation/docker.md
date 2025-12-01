@@ -4,7 +4,7 @@ Este documento explica como a stack Docker está configurada e como executar.
 
 ## Serviços (docker-compose.yaml)
 - `database` (MySQL 8.3)
-  - Usuário/senha/db: `skeleton` (padrão).
+  - Usuário/senha/db: `spacenow` (padrão).
   - Portas publicadas via `ports.env` (`DATABASE_HOST_PORT` → `DATABASE_CONTAINER_PORT`).
   - Volume `db_data` persiste os dados.
 

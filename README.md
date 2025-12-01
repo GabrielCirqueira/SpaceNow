@@ -1,199 +1,138 @@
-# Catalyst Skeleton — Symfony 7 + React + Vite
+# SpaceNow — Portal de Notícias da NASA
 
-<img width="1147" height="836" alt="image" src="https://github.com/user-attachments/assets/28e02cb8-297c-4af7-9ba6-1933e0698a0f" />
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![PHP](https://img.shields.io/badge/PHP-8.4-777BB4?logo=php)
+![Symfony](https://img.shields.io/badge/Symfony-7.3-000000?logo=symfony)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)
 
+Portal de notícias sobre o espaço, astronomia e missões da NASA. Desenvolvido com Symfony 7 + React 19 + Vite.
 
-Starter moderno integrando Symfony (backend) e React (frontend), com Vite, Mantine UI e tooling de qualidade (ESLint/Prettier, PHPCS, PHPStan). Projetado para dev ágil com foco em performance e boas práticas.
+## 🚀 Recursos
 
-## ✨ Tecnologias Principais
+- **Frontend Moderno**: React 19 com TypeScript e Vite para desenvolvimento ágil
+- **Backend Robusto**: Symfony 7.3 com PHP 8.4
+- **Design Responsivo**: Interface adaptável para todos os dispositivos
+- **Tema Dark/Light**: Alternância entre temas claro e escuro
+- **API da NASA**: Integração com APIs oficiais da NASA
 
-- Symfony 7.3 (PHP 8.4 no container)
-- React 18 + TypeScript
-- Vite 7 (HMR)
-- Mantine 8 (UI)
-- Lucide (ícones)
-- ESLint + Prettier, PHPCS, PHPStan
+## 📋 Pré-requisitos
 
-## 🚀 Instalação
+- Docker e Docker Compose
+- Node.js 20+ e npm
+- Make (opcional, para comandos facilitados)
 
-### Pré-requisitos (alternativas)
+## 🛠️ Instalação
 
-- Com Docker: Docker Desktop e Docker Compose (recomendado)
-- Sem Docker: PHP 8.4+, Composer 2.6+, Node.js 18+
+### 1. Clone o repositório
 
-### Passo a Passo
+```bash
+git clone https://github.com/GabrielCirqueira/SpaceNow.git
+cd SpaceNow
+```
 
-1. **Clonar o repositório**
-   ```bash
-   git clone https://github.com/GabrielCirqueira/Catalyst-Skeleton.git
-   cd Catalyst-Skeleton
-   ```
+### 2. Inicie os containers Docker
 
-2. **Instalar dependências PHP**
-   ```bash
-   composer install
-   ```
+```bash
+make up-d
+# ou
+docker-compose up -d
+```
 
-3. **Instalar dependências JavaScript**
-   ```bash
-   npm install
-   # ou com yarn
-   yarn
-   ```
+### 3. Instale as dependências
 
-4. **Iniciar servidores de desenvolvimento**
-   ```bash
-   # Recomendado: via Docker
-   make up-d
+```bash
+make install
+# ou
+docker-compose exec symfony composer install
+npm install
+```
 
-   # Ou localmente
-   npm install && npm run dev
-   php -S localhost:8000 -t public # ou Apache/Nginx local
-   ```
+### 4. Configure o banco de dados
 
-5. **Acessar a aplicação**
-   - Backend: `http://localhost:8000` (configurável via `BACKEND_PORT` em `docker/ports.env`)
-   - Frontend: `http://localhost:5173` (configurável via `FRONTEND_PORT` em `docker/ports.env`)
+```bash
+make db-create
+make db-migrate
+# ou
+docker-compose exec symfony php bin/console doctrine:database:create
+docker-compose exec symfony php bin/console doctrine:migrations:migrate
+```
 
-   > Ajuste os valores em `docker/ports.env` para trocar as portas expostas pela stack.
+### 5. Inicie o servidor de desenvolvimento
 
-## 🏗️ Estrutura (high-level)
+```bash
+npm run dev
+```
 
-- `web/` — Frontend React (App, layouts, pages, theme)
-- `templates/base.html.twig` — Shell do SPA com tags Vite
-- `src/` — Backend Symfony (controllers, console, kernel)
-- `config/` — Configurações do framework/bundles/rotas
-- `docker-compose.yaml`, `Dockerfile`, `docker/` — Orquestração
-- `cli/` — Scripts de lint/QA e hooks
-- `Makefile` — Comandos de conveniência
+Acesse: \`http://localhost:5173\`
 
-## 🔍 Principais Funcionalidades
+## 🔧 Comandos Úteis
 
-### Linting e Formatação
+| Comando | Descrição |
+|---------|-----------|
+| \`make up-d\` | Inicia containers em background |
+| \`make down\` | Para os containers |
+| \`make install\` | Instala todas as dependências |
+| \`make db-create\` | Cria o banco de dados |
+| \`make db-migrate\` | Executa as migrations |
+| \`npm run dev\` | Inicia o servidor de desenvolvimento |
+| \`npm run build\` | Build de produção |
+| \`npm run lint\` | Verifica código com ESLint |
 
-- Frontend: `npm run lint:frontend` (ou `lint:frontend:fix`)
-- Backend: `composer lint:php:cs` (ou `composer fix:php`)
-- Tudo: `./cli/run-qa.sh` (ou `npm run lint:all`)
+## 📦 Estrutura do Projeto
+
+\`\`\`
+SpaceNow/
+├── assets/           # Assets do Symfony
+├── bin/             # Scripts executáveis
+├── config/          # Configurações do Symfony
+├── migrations/      # Migrations do banco de dados
+├── public/          # Arquivos públicos
+├── src/             # Código-fonte PHP
+│   ├── Controller/  # Controllers
+│   ├── Entity/      # Entidades Doctrine
+│   └── Repository/  # Repositories
+├── templates/       # Templates Twig
+├── web/            # Aplicação React
+│   ├── components/  # Componentes React
+│   ├── pages/       # Páginas da aplicação
+│   ├── layouts/     # Layouts
+│   └── themes/      # Configuração de temas
+└── docker/         # Configurações Docker
+\`\`\`
+
+## 🌐 Tecnologias
+
+### Backend
+- **Symfony 7.3**: Framework PHP moderno
+- **PHP 8.4**: Última versão do PHP
+- **Doctrine ORM**: Mapeamento objeto-relacional
+- **MySQL 8.3**: Banco de dados
 
 ### Frontend
+- **React 19**: Biblioteca JavaScript moderna
+- **TypeScript**: Superset tipado do JavaScript
+- **Vite 7**: Build tool ultrarrápido
+- **Tailwind CSS**: Framework CSS utility-first
+- **shadcn/ui**: Componentes de UI reutilizáveis
 
-- Componentes funcionais com Hooks
-- Lazy routes (React Router)
-- Tema centralizado (Mantine)
-- Ícones Lucide
+### DevOps
+- **Docker**: Containerização
+- **Docker Compose**: Orquestração de containers
+- **Nginx/Apache**: Servidor web
 
-## 🛠️ Comandos Úteis
+## 🤝 Contribuindo
 
-- `make up-d` — sobe a stack Docker
-- `npm run dev` — Vite em modo dev (local)
-- `npm run build` — build de produção
-- `./cli/run-qa.sh` — roda todos os linters
-- `make help` — lista todos os comandos do Makefile
-
-## 📚 Documentação
-
-Para uma visão mais detalhada, consulte:
-
-- Frontend: documentation/frontend.md
-- Backend (Symfony): documentation/backend.md
-- Makefile (comandos): documentation/makefile.md
-- Scripts CLI: documentation/cli.md
-- Lint e formatação: documentation/formatting.md
-- Docker e orquestração: documentation/docker.md
-
-## 🎨 Tema
-
-O tema Mantine inclui uma paleta personalizada `brand` definida em `web/themes/theme.ts`.
-
-```ts
-colors: {
-  brand: {
-      50: '#E6F6F7',
-      100: '#B3E1E4',
-      200: '#80CCCC',
-      300: '#4DB7B3',
-      400: '#26A3A0',
-      500: '#1F8C89',
-      600: '#186F6E',
-      700: '#125355',
-      800: '#0B393B',
-      900: '#041F20',
-  }
-}
-```
-
-### Como usar as cores brand:
-```tsx
-// Exemplo de uso
-<Box bg="brand.100" color="brand.700">
-  <Text>Texto com cor brand</Text>
-</Box>
-
-<Button colorScheme="brand">Botão Primário</Button>
-```
-
-**Dica profissional:** Use `useColorModeValue` para alternar entre cores em light/dark mode:
-```tsx
-const color = useColorModeValue('brand.600', 'brand.300')
-```
-
-## 🛣️ Sistema de Rotas Avançado
-
-### Backend (Symfony)
-```yaml
-# config/routes.yaml
-react_frontend:
-  path: /{reactRouting}
-  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-  defaults:
-    template: 'base.html.twig'
-  requirements:
-    reactRouting: ".+"
-```
-
-Esta configuração permite que:
-- Todas as rotas sejam manipuladas pelo React Router
-- O Symfony sirva apenas o template base para o frontend
-- URLs amigáveis e limpas
-
-### Frontend (React Router)
-Estrutura moderna com lazy loading:
-
-```tsx
-// Exemplo de roteamento lazy-loaded
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route element={<AppLayout />}>
-      <Route 
-        path="/" 
-        lazy={() => import('@app/pages/Home')} 
-      />
-      <Route 
-        path="/about" 
-        lazy={() => import('@app/pages/About')} 
-      />
-      <Route 
-        path="*" 
-        lazy={() => import('@app/pages/NotFound')} 
-      />
-    </Route>
-  )
-)
-```
-
-**Vantagens:**
-- Carregamento sob demanda (melhor performance)
-- Código dividido automaticamente pelo Vite
-- Fácil manutenção e adição de novas rotas
-
-## 🤝 Contribuição
-
-1. Faça um fork do projeto
-2. Crie uma branch (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
 
 ## 📄 Licença
 
-Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
+Este projeto é proprietário.
+
+## 👨‍💻 Autor
+
+**Gabriel Cirqueira**
+
+---
+
+⭐ **SpaceNow** - Seu portal de notícias do espaço

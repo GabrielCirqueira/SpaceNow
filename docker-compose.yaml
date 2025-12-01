@@ -1,13 +1,13 @@
 services:
   database:
     image: mysql:8.3
-    container_name: skeleton_database
+    container_name: spacenow_database
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: skeleton
-      MYSQL_USER: skeleton
-      MYSQL_PASSWORD: skeleton
+      MYSQL_DATABASE: spacenow
+      MYSQL_USER: spacenow
+      MYSQL_PASSWORD: spacenow
     ports:
       - "${DATABASE_HOST_PORT:-3309}:${DATABASE_CONTAINER_PORT:-3306}"
     volumes:
@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: skeleton_symfony
+    container_name: spacenow_symfony
     restart: always
     env_file:
       - ports.env
@@ -34,7 +34,7 @@ services:
     build:
       context: .
       dockerfile: docker/vite.Dockerfile
-    container_name: skeleton_vite_react
+    container_name: spacenow_vite_react
     working_dir: /app
     user: "${DEV_UID:-1000}:${DEV_GID:-1000}"
     volumes:
