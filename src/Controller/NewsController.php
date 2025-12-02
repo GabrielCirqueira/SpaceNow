@@ -9,14 +9,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class NewsController extends AbstractController
 {
-    #[Route('/news', name: 'news')]
+    #[Route(path: '/news', name: 'news')]
     public function index(NasaAPI $nasaAPI): Response
     {
-        $DTOs = $nasaAPI->objetoProximoTerra()->obterFeed('2025-11-01', '2025-11-07');
-        dd($DTOs);
-        $dados = array_map(fn($dto) => $dto->jsonSerialize(), $DTOs);
+        $DTOs = $nasaAPI->imagemAstronomicaDia()->obterPorPeriodo(
+            dataInicio: '2024-06-01',
+            dataFim: '2024-06-05'
+        );
 
-        return $this->json([
+        $dados = array_map(callback: fn($dto): mixed =>
+            $dto->jsonSerialize(), array: $DTOs);
+
+        return $this->json(data: [
             'dados' => $dados,
             'status' => 'success'
         ]);

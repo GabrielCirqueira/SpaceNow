@@ -7,6 +7,7 @@ use App\API\Nasa\ObjetoProximoTerraAPI;
 use App\API\Nasa\ImagemTerraAPI;
 use App\API\Nasa\CameraEpicAPI;
 use App\API\Nasa\ClimaEspacialAPI;
+use App\API\Nasa\PesquisaAPI;
 
 /**
  * Facade/Agregador para todas as APIs da NASA
@@ -19,7 +20,8 @@ class NasaAPI
         private ObjetoProximoTerraAPI $objetoProximoTerraAPI,
         private ImagemTerraAPI $imagemTerraAPI,
         private CameraEpicAPI $cameraEpicAPI,
-        private ClimaEspacialAPI $climaEspacialAPI
+        private ClimaEspacialAPI $climaEspacialAPI,
+        private PesquisaAPI $pesquisaAPI
     ) {
     }
 
@@ -46,5 +48,10 @@ class NasaAPI
     public function climaEspacial(): ClimaEspacialAPI
     {
         return $this->climaEspacialAPI;
+    }
+
+    public function pesquisa(): PesquisaAPI
+    {
+        return $this->pesquisaAPI;
     }
 }

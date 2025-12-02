@@ -32,6 +32,11 @@ services:
     arguments:
       - { base_uri: 'https://api.nasa.gov/' }
 
+  api.nasa.pesquisa.client:
+    class: GuzzleHttp\Client
+    arguments:
+      - { base_uri: 'https://images-api.nasa.gov/' }
+
   GuzzleHttp\Client:
     alias: 'api.nasa.client'
 
@@ -39,6 +44,15 @@ services:
     arguments:
       $clientGuzzle: '@api.nasa.client'
       $nasaApiKey: '%env(NASA_API_KEY)%'
+
+  App\Infra\NasaPesquisaApiClient:
+    arguments:
+      $clientGuzzle: '@api.nasa.pesquisa.client'
+
+  App\API\Nasa\PesquisaAPI:
+    arguments:
+      $clientGuzzle: '@api.nasa.pesquisa.client'
+      $tradutor: '@App\API\TradutorAPI'
 
   api.tradutor.client:
     class: Stichoza\GoogleTranslate\GoogleTranslate
