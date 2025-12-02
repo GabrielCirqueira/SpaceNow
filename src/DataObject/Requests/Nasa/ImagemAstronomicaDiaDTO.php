@@ -2,33 +2,36 @@
 
 namespace App\DataObject\Requests\Nasa;
 
+use App\API\TradutorAPI;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * DTO para Imagem Astronômica do Dia (APOD)
  */
-class ImagemAstronomicaDiaDTO
+class ImagemAstronomicaDiaDTO implements \JsonSerializable
 {
     public function __construct(
         #[Assert\Type(Types::STRING)]
         private ?string $direitosAutorais = null,
         #[Assert\Type(Types::STRING)]
-        private string $data,
+        private ?string $data = null,
         #[Assert\Type(Types::STRING)]
-        private string $explicacao,
+        private ?string $explicacao = null,
         #[Assert\Type(Types::STRING)]
         private ?string $explicacaoPT = null,
         #[Assert\Type(Types::STRING)]
-        private string $urlHd,
+        private ?string $urlHd = null,
         #[Assert\Type(Types::STRING)]
-        private string $tipoMidia,
+        private ?string $tipoMidia = null,
         #[Assert\Type(Types::STRING)]
-        private string $versaoServico,
+        private ?string $versaoServico = null,
         #[Assert\Type(Types::STRING)]
-        private string $titulo,
+        private ?string $titulo = null,
         #[Assert\Type(Types::STRING)]
-        private string $url,
+        private ?string $tituloPT = null,
+        #[Assert\Type(Types::STRING)]
+        private ?string $url = null,
     ) {
     }
 
@@ -37,59 +40,90 @@ class ImagemAstronomicaDiaDTO
         return $this->direitosAutorais;
     }
 
-    public function obterData(): string
+    public function obterData(): ?string
     {
         return $this->data;
     }
 
-    public function obterExplicacao(): string
+    public function obterExplicacao(): ?string
     {
         return $this->explicacao;
     }
 
-    public function obterUrlHd(): string
+    public function obterUrlHd(): ?string
     {
         return $this->urlHd;
     }
 
-    public function obterTipoMidia(): string
+    public function obterTipoMidia(): ?string
     {
         return $this->tipoMidia;
     }
 
-    public function obterVersaoServico(): string
+    public function obterVersaoServico(): ?string
     {
         return $this->versaoServico;
     }
 
-    public function obterTitulo(): string
+    public function obterTitulo(): ?string
     {
         return $this->titulo;
     }
 
-    public function obterUrl(): string
+    public function obterUrl(): ?string
     {
         return $this->url;
     }
 
-    public static function deArray(array $dados): self
+    public function explicacaoPT(): ?string
     {
-        if (!isset($dados['date'], $dados['explanation'], $dados['media_type'], $dados['service_version'], $dados['title'], $dados['url'])) {
-            throw new \InvalidArgumentException('Campos obrigatórios ausentes ao criar ImagemAstronomicaDiaDTO');
+        return $this->explicacaoPT;
+    }
+
+    public function tituloPT(): ?string
+    {
+        return $this->tituloPT;
+    }
+
+    public static function deArray(array $dados, TradutorAPI $tradutor): self
+    {
+        $explicacaoPT = null;
+        if (isset($dados['explanation']) && $dados['explanation']) {
+            $explicacaoPT = $tradutor->traduzir(texto: $dados['explanation']);
         }
 
-        $explicacaoPT = null;
+        $tituloPT = null;
+        if (isset($dados['title']) && $dados['title']) {
+            $tituloPT = $tradutor->traduzir(texto: $dados['title']);
+        }
 
         return new self(
-            $dados['copyright'] ?? null,
-            $dados['date'],
-            $dados['explanation'],
-            $explicacaoPT,
-            $dados['hdurl'] ?? '',
-            $dados['media_type'],
-            $dados['service_version'],
-            $dados['title'],
-            $dados['url']
+            direitosAutorais: $dados['copyright'] ?? null,
+            data: $dados['date'] ?? null,
+            explicacao: $dados['explanation'] ?? null,
+            explicacaoPT: $explicacaoPT,
+            urlHd: $dados['hdurl'] ?? null,
+            tipoMidia: $dados['media_type'] ?? null,
+            versaoServico: $dados['service_version'] ?? null,
+            titulo: $dados['title'] ?? null,
+            tituloPT: $tituloPT,
+            url: $dados['url'] ?? null,
         );
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'direitosAutorais' => $this->direitosAutorais,
+            'data' => $this->data,
+            'explicacao' => $this->explicacao,
+            'explicacaoPT' => $this->explicacaoPT,
+            'urlHd' => $this->urlHd,
+            'tipoMidia' => $this->tipoMidia,
+            'versaoServico' => $this->versaoServico,
+            'titulo' => $this->titulo,
+            'tituloPT' => $this->tituloPT,
+            'url' => $this->url,
+        ];
     }
 }

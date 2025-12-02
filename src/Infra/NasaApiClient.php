@@ -3,6 +3,7 @@
 namespace App\Infra;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class NasaApiClient
 {
@@ -21,16 +22,20 @@ class NasaApiClient
     {
         $params['api_key'] = $this->nasaApiKey;
 
-        $response = $this->clientGuzzle->get($endpoint, [
-            'query' => $params,
-        ]);
+        try {
+            $response = $this->clientGuzzle->get($endpoint, [
+                'query' => $params,
+            ]);
 
-        $decoded = json_decode($response->getBody()->getContents(), true);
+            $decoded = json_decode($response->getBody()->getContents(), true);
 
-        if (!is_array($decoded)) {
-            return [];
+            if (!is_array($decoded)) {
+                return [];
+            }
+
+            return $decoded;
+        } catch (RequestException $e) {
+            throw $e;
         }
-
-        return $decoded;
     }
 }

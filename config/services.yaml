@@ -20,6 +20,13 @@ services:
       - '../src/Entity/'
       - '../src/Kernel.php'
 
+  # Serviços específicos das APIs da NASA (classe em src/API/Nasa/)
+  App\API\Nasa\:
+    resource: '../src/API/Nasa/*'
+    public: false
+    bind:
+      $nasaApiKey: '%env(NASA_API_KEY)%'
+
   api.nasa.client:
     class: GuzzleHttp\Client
     arguments:
@@ -33,13 +40,12 @@ services:
       $clientGuzzle: '@api.nasa.client'
       $nasaApiKey: '%env(NASA_API_KEY)%'
 
-  App\API\NasaAPI:
-    arguments:
-      $clientGuzzle: '@api.nasa.client'
-      $nasaApiKey: '%env(NASA_API_KEY)%'
-      $tradutor: '@App\API\TradutorAPI'
+  api.tradutor.client:
+    class: Stichoza\GoogleTranslate\GoogleTranslate
+    calls:
+      - setTarget: ['pt']
+      - setSource: ['en']
 
   App\API\TradutorAPI:
-    class: App\API\TradutorAPI
     arguments:
-      $googleApiKey: '%env(GOOGLE_TRANSLATE_API_KEY)%'
+      $tradutor: '@api.tradutor.client'
