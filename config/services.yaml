@@ -25,7 +25,21 @@ services:
     arguments:
       - { base_uri: 'https://api.nasa.gov/' }
 
+  GuzzleHttp\Client:
+    alias: 'api.nasa.client'
+
   App\Infra\NasaApiClient:
     arguments:
       $clientGuzzle: '@api.nasa.client'
       $nasaApiKey: '%env(NASA_API_KEY)%'
+
+  App\API\NasaAPI:
+    arguments:
+      $clientGuzzle: '@api.nasa.client'
+      $nasaApiKey: '%env(NASA_API_KEY)%'
+      $tradutor: '@App\API\TradutorAPI'
+
+  App\API\TradutorAPI:
+    class: App\API\TradutorAPI
+    arguments:
+      $googleApiKey: '%env(GOOGLE_TRANSLATE_API_KEY)%'
