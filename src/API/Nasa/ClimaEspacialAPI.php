@@ -37,7 +37,7 @@ class ClimaEspacialAPI extends NasaApiClient
             'endDate' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "DONKI/FLR", params: $params);
+        $response = $this->get(endpoint: 'DONKI/FLR', params: $params);
 
         return array_map(fn($data) => EventoDonkiDTO::deArray($data, $this->tradutor), $response);
     }
@@ -55,7 +55,7 @@ class ClimaEspacialAPI extends NasaApiClient
             'endDate' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "DONKI/CME", params: $params);
+        $response = $this->get(endpoint: 'DONKI/CME', params: $params);
 
         return $response;
     }
@@ -73,7 +73,7 @@ class ClimaEspacialAPI extends NasaApiClient
             'endDate' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "DONKI/GST", params: $params);
+        $response = $this->get(endpoint: 'DONKI/GST', params: $params);
 
         return $response;
     }
@@ -91,7 +91,7 @@ class ClimaEspacialAPI extends NasaApiClient
             'endDate' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "DONKI/WSAEnlilSimulation", params: $params);
+        $response = $this->get(endpoint: 'DONKI/WSAEnlilSimulation', params: $params);
 
         return $response;
     }
@@ -109,7 +109,7 @@ class ClimaEspacialAPI extends NasaApiClient
             'endDate' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "DONKI/SEP", params: $params);
+        $response = $this->get(endpoint: 'DONKI/SEP', params: $params);
 
         return $response;
     }
@@ -127,7 +127,7 @@ class ClimaEspacialAPI extends NasaApiClient
             'endDate' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "DONKI/IPS", params: $params);
+        $response = $this->get(endpoint: 'DONKI/IPS', params: $params);
 
         return $response;
     }
@@ -145,7 +145,7 @@ class ClimaEspacialAPI extends NasaApiClient
             'endDate' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "DONKI/MPC", params: $params);
+        $response = $this->get(endpoint: 'DONKI/MPC', params: $params);
 
         return $response;
     }
@@ -163,7 +163,7 @@ class ClimaEspacialAPI extends NasaApiClient
             'endDate' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "DONKI/RBE", params: $params);
+        $response = $this->get(endpoint: 'DONKI/RBE', params: $params);
 
         return $response;
     }
@@ -175,8 +175,11 @@ class ClimaEspacialAPI extends NasaApiClient
      * @param string|null $tipo Tipo de notificação
      * @return array
      */
-    public function obterNotificacoes(string $dataInicio, string $dataFim, ?string $tipo = null): array
-    {
+    public function obterNotificacoes(
+        string $dataInicio,
+        string $dataFim,
+        ?string $tipo = null,
+    ): array {
         $params = [
             'startDate' => $dataInicio,
             'endDate' => $dataFim,
@@ -186,7 +189,7 @@ class ClimaEspacialAPI extends NasaApiClient
             $params['type'] = $tipo;
         }
 
-        $response = $this->get(endpoint: "DONKI/notifications", params: $params);
+        $response = $this->get(endpoint: 'DONKI/notifications', params: $params);
 
         return $response;
     }

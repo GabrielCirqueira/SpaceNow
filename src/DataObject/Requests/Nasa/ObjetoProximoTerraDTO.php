@@ -12,16 +12,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ObjetoProximoTerraDTO implements \JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private ?string $id = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $nome = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $nomePT = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $urlNasaJpl = null,
-        #[Assert\Type(Types::BOOLEAN)]
-        private ?bool $potencialmentePerigoso = null,
+        #[Assert\Type(Types::STRING)] private ?string $id = null,
+        #[Assert\Type(Types::STRING)] private ?string $nome = null,
+        #[Assert\Type(Types::STRING)] private ?string $nomePT = null,
+        #[Assert\Type(Types::STRING)] private ?string $urlNasaJpl = null,
+        #[Assert\Type(Types::BOOLEAN)] private ?bool $potencialmentePerigoso = null,
         private ?array $dadosAproximacao = null,
         private ?array $diametroEstimado = null,
     ) {}
@@ -73,7 +68,7 @@ class ObjetoProximoTerraDTO implements \JsonSerializable
             $dados['nasa_jpl_url'] ?? null,
             $dados['is_potentially_hazardous_asteroid'] ?? null,
             $dados['close_approach_data'] ?? null,
-            $dados['estimated_diameter'] ?? null
+            $dados['estimated_diameter'] ?? null,
         );
     }
 

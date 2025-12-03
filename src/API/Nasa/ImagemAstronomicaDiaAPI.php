@@ -36,9 +36,12 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
             'end_date' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "planetary/apod", params: $params);
+        $response = $this->get(endpoint: 'planetary/apod', params: $params);
 
-        return array_map(fn($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor), $response);
+        return array_map(
+            fn($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor),
+            $response,
+        );
     }
 
     /**
@@ -49,7 +52,7 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
     public function obterPorData(string $data): ImagemAstronomicaDiaDTO
     {
         $params = ['date' => $data];
-        $response = $this->get(endpoint: "planetary/apod", params: $params);
+        $response = $this->get(endpoint: 'planetary/apod', params: $params);
 
         return ImagemAstronomicaDiaDTO::deArray($response, $this->tradutor);
     }
@@ -62,9 +65,12 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
     public function obterAleatorio(int $quantidade = 1): array
     {
         $params = ['count' => $quantidade];
-        $response = $this->get(endpoint: "planetary/apod", params: $params);
+        $response = $this->get(endpoint: 'planetary/apod', params: $params);
 
-        return array_map(fn($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor), $response);
+        return array_map(
+            fn($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor),
+            $response,
+        );
     }
 
     /**

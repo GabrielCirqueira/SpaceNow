@@ -3,20 +3,17 @@
 namespace App\DataObject\Requests\Nasa\Pesquisa;
 
 use App\API\TradutorAPI;
-use JsonSerializable;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * DTO para a coleção (collection) na resposta da NASA Images API
+ * DTO para a coleção (collection) na resposta da NASA Images API.
  */
-class ColecaoPesquisaDTO implements JsonSerializable
+class ColecaoPesquisaDTO implements \JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private string $version,
-        #[Assert\Type(Types::STRING)]
-        private string $href,
+        #[Assert\Type(Types::STRING)] private string $version,
+        #[Assert\Type(Types::STRING)] private string $href,
         /** @var ItemPesquisaDTO[] */
         private array $items,
         private ?array $metadata = null,

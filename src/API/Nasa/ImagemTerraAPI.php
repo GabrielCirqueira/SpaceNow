@@ -33,7 +33,7 @@ class ImagemTerraAPI extends NasaApiClient
         float $longitude,
         ?string $data = null,
         ?float $dimensao = null,
-        bool $pontuacaoNuvens = false
+        bool $pontuacaoNuvens = false,
     ): ImagemTerraDTO {
         $params = [
             'lat' => $latitude,
@@ -52,7 +52,7 @@ class ImagemTerraAPI extends NasaApiClient
             $params['cloud_score'] = 'true';
         }
 
-        $response = $this->get(endpoint: "planetary/earth/imagery", params: $params);
+        $response = $this->get(endpoint: 'planetary/earth/imagery', params: $params);
 
         return ImagemTerraDTO::deArray($response);
     }
@@ -69,7 +69,7 @@ class ImagemTerraAPI extends NasaApiClient
         float $latitude,
         float $longitude,
         string $dataInicio,
-        string $dataFim
+        string $dataFim,
     ): array {
         $params = [
             'lat' => $latitude,
@@ -78,7 +78,7 @@ class ImagemTerraAPI extends NasaApiClient
             'end' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "planetary/earth/assets", params: $params);
+        $response = $this->get(endpoint: 'planetary/earth/assets', params: $params);
 
         return $response;
     }

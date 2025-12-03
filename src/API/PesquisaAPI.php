@@ -35,7 +35,7 @@ class PesquisaAPI extends NasaPesquisaApiClient
         ?string $mediaType = null,
         int $limit = 10,
         ?string $yearStart = null,
-        ?string $yearEnd = null
+        ?string $yearEnd = null,
     ): ResultadoPesquisaDTO {
         $params = ['q' => $query];
 
@@ -57,13 +57,16 @@ class PesquisaAPI extends NasaPesquisaApiClient
         $response = $this->get(endpoint: 'search', params: $params);
 
         if (empty($response)) {
-            return ResultadoPesquisaDTO::deArray([
-                'collection' => [
-                    'version' => '1.0',
-                    'href' => '',
-                    'items' => [],
-                ]
-            ], $this->tradutor);
+            return ResultadoPesquisaDTO::deArray(
+                [
+                    'collection' => [
+                        'version' => '1.0',
+                        'href' => '',
+                        'items' => [],
+                    ],
+                ],
+                $this->tradutor,
+            );
         }
 
         return ResultadoPesquisaDTO::deArray($response, $this->tradutor);

@@ -12,26 +12,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ImagemAstronomicaDiaDTO implements \JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private ?string $direitosAutorais = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $data = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $explicacao = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $explicacaoPT = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $urlHd = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $tipoMidia = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $versaoServico = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $titulo = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $tituloPT = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $url = null,
+        #[Assert\Type(Types::STRING)] private ?string $direitosAutorais = null,
+        #[Assert\Type(Types::STRING)] private ?string $data = null,
+        #[Assert\Type(Types::STRING)] private ?string $explicacao = null,
+        #[Assert\Type(Types::STRING)] private ?string $explicacaoPT = null,
+        #[Assert\Type(Types::STRING)] private ?string $urlHd = null,
+        #[Assert\Type(Types::STRING)] private ?string $tipoMidia = null,
+        #[Assert\Type(Types::STRING)] private ?string $versaoServico = null,
+        #[Assert\Type(Types::STRING)] private ?string $titulo = null,
+        #[Assert\Type(Types::STRING)] private ?string $tituloPT = null,
+        #[Assert\Type(Types::STRING)] private ?string $url = null,
     ) {}
 
     public function obterDireitosAutorais(): ?string

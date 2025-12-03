@@ -12,18 +12,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class LinkPesquisaDTO implements JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private string $href,
-        #[Assert\Type(Types::STRING)]
-        private string $rel,
-        #[Assert\Type(Types::STRING)]
-        private string $render,
-        #[Assert\Type(Types::INTEGER)]
-        private ?int $width = null,
-        #[Assert\Type(Types::INTEGER)]
-        private ?int $height = null,
-        #[Assert\Type(Types::INTEGER)]
-        private ?int $size = null,
+        #[Assert\Type(Types::STRING)] private string $href,
+        #[Assert\Type(Types::STRING)] private string $rel,
+        #[Assert\Type(Types::STRING)] private string $render,
+        #[Assert\Type(Types::INTEGER)] private ?int $width = null,
+        #[Assert\Type(Types::INTEGER)] private ?int $height = null,
+        #[Assert\Type(Types::INTEGER)] private ?int $size = null,
     ) {}
 
     public static function deArray(array $dados): self

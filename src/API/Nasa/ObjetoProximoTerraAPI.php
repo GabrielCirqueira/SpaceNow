@@ -36,7 +36,7 @@ class ObjetoProximoTerraAPI extends NasaApiClient
             'end_date' => $dataFim,
         ];
 
-        $response = $this->get(endpoint: "neo/rest/v1/feed", params: $params);
+        $response = $this->get(endpoint: 'neo/rest/v1/feed', params: $params);
 
         if (!isset($response['near_earth_objects'])) {
             return [];
@@ -72,7 +72,7 @@ class ObjetoProximoTerraAPI extends NasaApiClient
     public function navegarLista(int $pagina = 0): array
     {
         $params = ['page' => $pagina];
-        $response = $this->get(endpoint: "neo/rest/v1/neo/browse", params: $params);
+        $response = $this->get(endpoint: 'neo/rest/v1/neo/browse', params: $params);
 
         if (!isset($response['near_earth_objects'])) {
             return [];
@@ -80,7 +80,7 @@ class ObjetoProximoTerraAPI extends NasaApiClient
 
         return array_map(
             fn($data) => ObjetoProximoTerraDTO::deArray($data, $this->tradutor),
-            $response['near_earth_objects']
+            $response['near_earth_objects'],
         );
     }
 }

@@ -7,10 +7,7 @@ use GuzzleHttp\Exception\RequestException;
 
 class NasaApiClient
 {
-    public function __construct(
-        private Client $clientGuzzle,
-        private string $nasaApiKey,
-    ) {}
+    public function __construct(private Client $clientGuzzle, private string $nasaApiKey) {}
 
     /**
      * @param string $endpoint

@@ -11,14 +11,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ImagemTerraDTO implements \JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private ?string $data = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $url = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $pontuacaoNuvens = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $id = null,
+        #[Assert\Type(Types::STRING)] private ?string $data = null,
+        #[Assert\Type(Types::STRING)] private ?string $url = null,
+        #[Assert\Type(Types::STRING)] private ?string $pontuacaoNuvens = null,
+        #[Assert\Type(Types::STRING)] private ?string $id = null,
     ) {}
 
     public function obterData(): ?string
@@ -47,7 +43,7 @@ class ImagemTerraDTO implements \JsonSerializable
             $dados['date'] ?? null,
             $dados['url'] ?? null,
             $dados['cloud_score'] ?? null,
-            $dados['id'] ?? null
+            $dados['id'] ?? null,
         );
     }
 

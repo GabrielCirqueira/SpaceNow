@@ -13,33 +13,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 class DadosPesquisaDTO implements JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private string $nasaId,
-        #[Assert\Type(Types::STRING)]
-        private string $title,
-        #[Assert\Type(Types::STRING)]
-        private string $description,
-        #[Assert\Type(Types::STRING)]
-        private string $mediaType,
-        #[Assert\Type(Types::STRING)]
-        private string $dateCreated,
-        #[Assert\Type(Types::STRING)]
-        private ?string $center = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $photographer = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $secondaryCreator = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $description508 = null,
+        #[Assert\Type(Types::STRING)] private string $nasaId,
+        #[Assert\Type(Types::STRING)] private string $title,
+        #[Assert\Type(Types::STRING)] private string $description,
+        #[Assert\Type(Types::STRING)] private string $mediaType,
+        #[Assert\Type(Types::STRING)] private string $dateCreated,
+        #[Assert\Type(Types::STRING)] private ?string $center = null,
+        #[Assert\Type(Types::STRING)] private ?string $photographer = null,
+        #[Assert\Type(Types::STRING)] private ?string $secondaryCreator = null,
+        #[Assert\Type(Types::STRING)] private ?string $description508 = null,
         /** @var string[]|null */
         private ?array $keywords = null,
         /** @var string[]|null */
         private ?array $album = null,
         // Campos traduzidos
-        #[Assert\Type(Types::STRING)]
-        private ?string $titlePT = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $descriptionPT = null,
+        #[Assert\Type(Types::STRING)] private ?string $titlePT = null,
+        #[Assert\Type(Types::STRING)] private ?string $descriptionPT = null,
     ) {}
 
     public static function deArray(array $dados, ?TradutorAPI $tradutor = null): self

@@ -14,8 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ItemPesquisaDTO implements JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private string $href,
+        #[Assert\Type(Types::STRING)] private string $href,
         /** @var DadosPesquisaDTO[] */
         private array $data,
         /** @var LinkPesquisaDTO[] */
@@ -38,11 +37,7 @@ class ItemPesquisaDTO implements JsonSerializable
             }
         }
 
-        return new self(
-            href: $dados['href'] ?? '',
-            data: $data,
-            links: $links,
-        );
+        return new self(href: $dados['href'] ?? '', data: $data, links: $links);
     }
 
     public function href(): string

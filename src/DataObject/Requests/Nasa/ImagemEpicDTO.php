@@ -12,18 +12,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ImagemEpicDTO implements \JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private ?string $identificador = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $legenda = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $legendaPT = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $imagem = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $versao = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $data = null,
+        #[Assert\Type(Types::STRING)] private ?string $identificador = null,
+        #[Assert\Type(Types::STRING)] private ?string $legenda = null,
+        #[Assert\Type(Types::STRING)] private ?string $legendaPT = null,
+        #[Assert\Type(Types::STRING)] private ?string $imagem = null,
+        #[Assert\Type(Types::STRING)] private ?string $versao = null,
+        #[Assert\Type(Types::STRING)] private ?string $data = null,
         private ?array $coordenadasCentroide = null,
         private ?array $posicaoDscovrJ2000 = null,
         private ?array $posicaoLunarJ2000 = null,
@@ -102,7 +96,7 @@ class ImagemEpicDTO implements \JsonSerializable
             $dados['dscovr_j2000_position'] ?? null,
             $dados['lunar_j2000_position'] ?? null,
             $dados['sun_j2000_position'] ?? null,
-            $dados['attitude_quaternions'] ?? null
+            $dados['attitude_quaternions'] ?? null,
         );
     }
 

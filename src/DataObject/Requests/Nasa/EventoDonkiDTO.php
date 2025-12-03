@@ -12,20 +12,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class EventoDonkiDTO implements \JsonSerializable
 {
     public function __construct(
-        #[Assert\Type(Types::STRING)]
-        private ?string $idAtividade = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $horarioInicio = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $horarioPico = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $horarioFim = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $tipoClasse = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $localizacaoOrigem = null,
-        #[Assert\Type(Types::STRING)]
-        private ?string $localizacaoOrigemPT = null,
+        #[Assert\Type(Types::STRING)] private ?string $idAtividade = null,
+        #[Assert\Type(Types::STRING)] private ?string $horarioInicio = null,
+        #[Assert\Type(Types::STRING)] private ?string $horarioPico = null,
+        #[Assert\Type(Types::STRING)] private ?string $horarioFim = null,
+        #[Assert\Type(Types::STRING)] private ?string $tipoClasse = null,
+        #[Assert\Type(Types::STRING)] private ?string $localizacaoOrigem = null,
+        #[Assert\Type(Types::STRING)] private ?string $localizacaoOrigemPT = null,
         private ?array $eventosVinculados = null,
     ) {}
 
@@ -82,7 +75,7 @@ class EventoDonkiDTO implements \JsonSerializable
             $dados['classType'] ?? null,
             $localizacaoOrigem,
             $localizacaoOrigemPT,
-            $dados['linkedEvents'] ?? null
+            $dados['linkedEvents'] ?? null,
         );
     }
 

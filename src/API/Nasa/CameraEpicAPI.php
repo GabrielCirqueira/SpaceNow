@@ -29,7 +29,7 @@ class CameraEpicAPI extends NasaApiClient
      */
     public function obterImagensNaturais(): array
     {
-        $response = $this->get(endpoint: "EPIC/api/natural");
+        $response = $this->get(endpoint: 'EPIC/api/natural');
 
         return array_map(fn($data) => ImagemEpicDTO::deArray($data, $this->tradutor), $response);
     }
@@ -40,7 +40,7 @@ class CameraEpicAPI extends NasaApiClient
      */
     public function obterImagensRealcadas(): array
     {
-        $response = $this->get(endpoint: "EPIC/api/enhanced");
+        $response = $this->get(endpoint: 'EPIC/api/enhanced');
 
         return array_map(fn($data) => ImagemEpicDTO::deArray($data, $this->tradutor), $response);
     }

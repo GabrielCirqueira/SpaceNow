@@ -14,13 +14,21 @@ class NasaController extends AbstractController
     public function imagemAstronomicaDia(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTOs = $nasaAPI->imagemAstronomicaDia()->obterPorPeriodo(dataInicio: '2024-06-01', dataFim: '2024-06-05');
+            $DTOs = $nasaAPI
+                ->imagemAstronomicaDia()
+                ->obterPorPeriodo(dataInicio: '2024-06-01', dataFim: '2024-06-05');
 
             $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
 
-            return $this->json(data: ['dados' => $dados, 'status' => 'success'], status: Response::HTTP_OK);
+            return $this->json(
+                data: ['dados' => $dados, 'status' => 'success'],
+                status: Response::HTTP_OK,
+            );
         } catch (\Exception $e) {
-            return $this->json(data: ['mensagem' => $e->getMessage(), 'status' => 'error'], status: Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->json(
+                data: ['mensagem' => $e->getMessage(), 'status' => 'error'],
+                status: Response::HTTP_INTERNAL_SERVER_ERROR,
+            );
         }
     }
 
@@ -34,9 +42,15 @@ class NasaController extends AbstractController
 
             $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
 
-            return $this->json(data: ['dados' => $dados, 'status' => 'success'], status: Response::HTTP_OK);
+            return $this->json(
+                data: ['dados' => $dados, 'status' => 'success'],
+                status: Response::HTTP_OK,
+            );
         } catch (\Exception $e) {
-            return $this->json(data: ['mensagem' => $e->getMessage(), 'status' => 'error'], status: Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->json(
+                data: ['mensagem' => $e->getMessage(), 'status' => 'error'],
+                status: Response::HTTP_INTERNAL_SERVER_ERROR,
+            );
         }
     }
 }
