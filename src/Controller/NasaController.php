@@ -38,7 +38,7 @@ class NasaController extends AbstractController
         try {
             $DTOs = $nasaAPI->imagemAstronomicaDia()->obterUltimos(limit: 10);
 
-            dd($DTOs);
+            // dd($DTOs);
 
             $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
 
