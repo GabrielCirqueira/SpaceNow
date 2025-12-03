@@ -66,4 +66,46 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
 
         return array_map(fn($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor), $response);
     }
+
+    /**
+     * Retorna os últimos N registros (a partir de hoje ou de uma data final informada)
+     * @param int $limit Quantidade de registros desejada (>= 1)
+     * @param string|null $dataFim Data final no formato YYYY-MM-DD (opcional). Se não informada, usa hoje.
+     * @return ImagemAstronomicaDiaDTO[]
+     * @throws \InvalidArgumentException
+     */
+    public function obterUltimos(int $limit, ?string $dataFim = null): array
+    {
+        if ($limit < 1) {
+            throw new \InvalidArgumentException('O parâmetro $limit deve ser maior ou igual a 1.');
+        }
+
+        $end = $dataFim ? new \DateTimeImmutable($dataFim) : new \DateTimeImmutable('now');
+        $endStr = $end->format('Y-m-d');
+
+        $days = $limit - 1;
+        $intervalSpec = 'P' . $days . 'D';
+        $start = $end->sub(new \DateInterval($intervalSpec));
+        $startStr = $start->format('Y-m-d');
+
+        $registros = $this->obterPorPeriodo($startStr, $endStr);
+
+        $registros = array_map(function ($item) {
+            if ($item instanceof ImagemAstronomicaDiaDTO) {
+                return $item;
+            }
+
+            return ImagemAstronomicaDiaDTO::deArray((array) $item, $this->tradutor);
+        }, $registros);
+
+        usort($registros, function (ImagemAstronomicaDiaDTO $a, ImagemAstronomicaDiaDTO $b) {
+            return strcmp($b->obterData() ?? '', $a->obterData() ?? '');
+        });
+
+        if (count($registros) > $limit) {
+            $registros = array_slice($registros, 0, $limit);
+        }
+
+        return $registros;
+    }
 }

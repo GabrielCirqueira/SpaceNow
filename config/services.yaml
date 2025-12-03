@@ -49,7 +49,7 @@ services:
     arguments:
       $clientGuzzle: '@api.nasa.pesquisa.client'
 
-  App\API\Nasa\PesquisaAPI:
+  App\API\PesquisaAPI:
     arguments:
       $clientGuzzle: '@api.nasa.pesquisa.client'
       $tradutor: '@App\API\TradutorAPI'

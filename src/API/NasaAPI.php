@@ -7,7 +7,7 @@ use App\API\Nasa\ObjetoProximoTerraAPI;
 use App\API\Nasa\ImagemTerraAPI;
 use App\API\Nasa\CameraEpicAPI;
 use App\API\Nasa\ClimaEspacialAPI;
-use App\API\Nasa\PesquisaAPI;
+use App\API\PesquisaAPI;
 
 /**
  * Facade/Agregador para todas as APIs da NASA
