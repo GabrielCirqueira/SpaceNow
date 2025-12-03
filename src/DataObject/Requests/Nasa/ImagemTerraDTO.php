@@ -19,8 +19,7 @@ class ImagemTerraDTO implements \JsonSerializable
         private ?string $pontuacaoNuvens = null,
         #[Assert\Type(Types::STRING)]
         private ?string $id = null,
-    ) {
-    }
+    ) {}
 
     public function obterData(): ?string
     {

@@ -28,7 +28,15 @@
     "editor.insertSpaces": true
   },
   "intelephense.format.enable": true,
-  "intelephense.format.braces": "k&r",
+  "intelephense.format.braces": "per",
+  "php.validate.enable": false,
+  "phpcs.enable": false,
+  "phpcs.standard": null,
+  "phpcbf.enable": false,
+  "phpsab.executablePathCS": "",
+  "phpsab.executablePathCBF": "",
+  "phpsab.snifferEnable": false,
+  "phpsab.fixerEnable": false,
   "files.associations": {
     "*.css": "tailwindcss"
   },
@@ -43,5 +51,5 @@
   "css.validate": false,
   "editor.quickSuggestions": {
     "strings": true
-  },
+  }
 }

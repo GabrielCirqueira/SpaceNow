@@ -13,8 +13,7 @@ class ResultadoPesquisaDTO implements JsonSerializable
 {
     public function __construct(
         private ColecaoPesquisaDTO $collection,
-    ) {
-    }
+    ) {}
 
     public static function deArray(array $dados, ?TradutorAPI $tradutor = null): self
     {

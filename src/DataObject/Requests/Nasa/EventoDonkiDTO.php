@@ -27,8 +27,7 @@ class EventoDonkiDTO implements \JsonSerializable
         #[Assert\Type(Types::STRING)]
         private ?string $localizacaoOrigemPT = null,
         private ?array $eventosVinculados = null,
-    ) {
-    }
+    ) {}
 
     public function obterIdAtividade(): ?string
     {

@@ -8,9 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/nasa')]
-class NasaController extends AbstractController {
+class NasaController extends AbstractController
+{
     #[Route(path: '/imagemAstronomicaDia', name: 'imagem_astronomica_dia')]
-    public function imagemAstronomicaDia(NasaAPI $nasaAPI): Response {
+    public function imagemAstronomicaDia(NasaAPI $nasaAPI): Response
+    {
         try {
             $DTOs = $nasaAPI->imagemAstronomicaDia()->obterPorPeriodo(dataInicio: '2024-06-01', dataFim: '2024-06-05');
 
@@ -23,7 +25,8 @@ class NasaController extends AbstractController {
     }
 
     #[Route(path: '/apod', name: 'apod')]
-    public function apod(NasaAPI $nasaAPI): Response {
+    public function apod(NasaAPI $nasaAPI): Response
+    {
         try {
             $DTOs = $nasaAPI->imagemAstronomicaDia()->obterUltimos(limit: 10);
 

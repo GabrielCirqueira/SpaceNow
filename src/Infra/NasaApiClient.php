@@ -10,8 +10,7 @@ class NasaApiClient
     public function __construct(
         private Client $clientGuzzle,
         private string $nasaApiKey,
-    ) {
-    }
+    ) {}
 
     /**
      * @param string $endpoint

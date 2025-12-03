@@ -22,8 +22,7 @@ class NasaAPI
         private CameraEpicAPI $cameraEpicAPI,
         private ClimaEspacialAPI $climaEspacialAPI,
         private PesquisaAPI $pesquisaAPI
-    ) {
-    }
+    ) {}
 
     public function imagemAstronomicaDia(): ImagemAstronomicaDiaAPI
     {

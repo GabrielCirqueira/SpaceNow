@@ -32,8 +32,7 @@ class ImagemAstronomicaDiaDTO implements \JsonSerializable
         private ?string $tituloPT = null,
         #[Assert\Type(Types::STRING)]
         private ?string $url = null,
-    ) {
-    }
+    ) {}
 
     public function obterDireitosAutorais(): ?string
     {

@@ -24,8 +24,7 @@ class LinkPesquisaDTO implements JsonSerializable
         private ?int $height = null,
         #[Assert\Type(Types::INTEGER)]
         private ?int $size = null,
-    ) {
-    }
+    ) {}
 
     public static function deArray(array $dados): self
     {

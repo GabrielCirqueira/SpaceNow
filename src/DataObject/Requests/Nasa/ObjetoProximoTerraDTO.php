@@ -24,8 +24,7 @@ class ObjetoProximoTerraDTO implements \JsonSerializable
         private ?bool $potencialmentePerigoso = null,
         private ?array $dadosAproximacao = null,
         private ?array $diametroEstimado = null,
-    ) {
-    }
+    ) {}
 
     public function obterId(): ?string
     {

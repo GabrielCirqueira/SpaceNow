@@ -29,8 +29,7 @@ class ImagemEpicDTO implements \JsonSerializable
         private ?array $posicaoLunarJ2000 = null,
         private ?array $posicaoSolarJ2000 = null,
         private ?array $quaterniosAtitude = null,
-    ) {
-    }
+    ) {}
 
     public function obterIdentificador(): ?string
     {

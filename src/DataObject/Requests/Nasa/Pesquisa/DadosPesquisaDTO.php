@@ -40,8 +40,7 @@ class DadosPesquisaDTO implements JsonSerializable
         private ?string $titlePT = null,
         #[Assert\Type(Types::STRING)]
         private ?string $descriptionPT = null,
-    ) {
-    }
+    ) {}
 
     public static function deArray(array $dados, ?TradutorAPI $tradutor = null): self
     {

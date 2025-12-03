@@ -9,8 +9,7 @@ class TradutorAPI
 {
     public function __construct(
         private GoogleTranslate $tradutor
-    ) {
-    }
+    ) {}
 
     public function traduzir(string $texto): string
     {

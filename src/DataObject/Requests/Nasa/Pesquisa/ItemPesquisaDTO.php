@@ -20,8 +20,7 @@ class ItemPesquisaDTO implements JsonSerializable
         private array $data,
         /** @var LinkPesquisaDTO[] */
         private array $links,
-    ) {
-    }
+    ) {}
 
     public static function deArray(array $dados, ?TradutorAPI $tradutor = null): self
     {
