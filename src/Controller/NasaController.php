@@ -36,11 +36,34 @@ class NasaController extends AbstractController
     public function apod(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTOs = $nasaAPI->imagemAstronomicaDia()->obterUltimos(limit: 10);
-
-            // dd($DTOs);
+            $DTOs = $nasaAPI->imagemAstronomicaDia()->obterUltimos(limit: 20);
 
             $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
+
+            return $this->json(
+                data: ['dados' => $dados, 'status' => 'success'],
+                status: Response::HTTP_OK,
+            );
+        } catch (\Exception $e) {
+            return $this->json(
+                data: ['mensagem' => $e->getMessage(), 'status' => 'error'],
+                status: Response::HTTP_INTERNAL_SERVER_ERROR,
+            );
+        }
+    }
+
+    #[Route(path: '/blackHole', name: 'black_hole')]
+    public function blackHole(NasaAPI $nasaAPI): Response
+    {
+        try {
+            $DTOs = $nasaAPI
+                ->pesquisa()
+                ->pesquisar(query: 'black hole', mediaType: 'image', limit: 5);
+
+            $dados = array_map(
+                callback: fn($dto): mixed => $dto->jsonSerialize(),
+                array: $DTOs->collection()->items(),
+            );
 
             return $this->json(
                 data: ['dados' => $dados, 'status' => 'success'],

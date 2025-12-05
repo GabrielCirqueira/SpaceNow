@@ -1,5 +1,5 @@
 import { AppContainer } from '@/layouts'
-import { Box, Container, Grid } from '@/shadcn/components/ui/layout'
+import { Box, Container, Grid, Image } from '@/shadcn/components/ui/layout'
 import { Text, Title } from '@/shadcn/components/ui/typography'
 import { useApod } from '@app/hooks/useApod'
 
@@ -18,11 +18,11 @@ export function Component() {
                 className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
               >
                 <Box className="relative h-48 w-full bg-gray-900">
-                  <img
+                  <Image
                     src={item.urlHd}
                     alt={item.tituloPT}
                     className="w-full h-full object-cover"
-                  />
+                  ></Image>
                 </Box>
 
                 <Box className="p-4 space-y-3">
@@ -33,6 +33,8 @@ export function Component() {
                   <Text size="sm" className="text-gray-300 line-clamp-3">
                     {item.explicacaoPT}
                   </Text>
+
+                  <Link
 
                   <a
                     href={item.urlHd}

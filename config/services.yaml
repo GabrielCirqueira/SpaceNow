@@ -20,7 +20,6 @@ services:
       - '../src/Entity/'
       - '../src/Kernel.php'
 
-  # Serviços específicos das APIs da NASA (classe em src/API/Nasa/)
   App\API\Nasa\:
     resource: '../src/API/Nasa/*'
     public: false
