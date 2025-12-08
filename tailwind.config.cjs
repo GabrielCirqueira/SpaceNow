@@ -10,9 +10,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Lato', 'Poppins', 'system-ui', 'sans-serif'],
-        heading: ['Poppins', 'Lato', 'system-ui', 'sans-serif'],
-        body: ['Lato', 'Poppins', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Sora', 'Lato', 'Poppins', 'system-ui', 'sans-serif'],
+        heading: ['Inter', 'Sora', 'Poppins', 'Lato', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'Sora', 'Lato', 'Poppins', 'system-ui', 'sans-serif'],
       },
       fontWeight: {
         normal: '400',
@@ -39,31 +39,62 @@ module.exports = {
       },
       colors: {
         brand: {
-          50: '#e4ffff',
-          100: '#bbf7ff',
-          200: '#8aeeff',
-          300: '#59e6ff',
-          400: '#22dcff',
-          500: '#00caff',
-          600: '#009cbf',
-          700: '#00738f',
-          800: '#004d5f',
-          900: '#00262f',
-          950: '#001218',
+          100: "#d6f2f5",
+          200: "#ade6eb",
+          300: "#84d9e0",
+          400: "#5bcdd6",
+          500: "#32c0cc",
+          600: "#289aa3",
+          700: "#1e737a",
+          800: "#144d52",
+          900: "#0a2629"
+        },
+        primary: {
+          100: "#d6f2f5",
+          200: "#ade6eb",
+          300: "#84d9e0",
+          400: "#5bcdd6",
+          500: "#32c0cc",
+          600: "#289aa3",
+          700: "#1e737a",
+          800: "#144d52",
+          900: "#0a2629"
+        },
+        midnight: {
+          100: "#d6dce6",
+          200: "#acb9cc",
+          300: "#8395b3",
+          400: "#597299",
+          500: "#304f80",
+          600: "#263f66",
+          700: "#1d2f4d",
+          800: "#132033",
+          900: "#0a101a"
+        },
+        lavanda: {
+          100: "#d1d4e2",
+          200: "#a3a9c5",
+          300: "#767da8",
+          400: "#48528b",
+          500: "#1a276e",
+          600: "#151f58",
+          700: "#101742",
+          800: "#0a102c",
+          900: "#050816"
         },
 
-        primary: {
-          50: '#e4ffff',
-          100: '#bbf7ff',
-          200: '#8aeeff',
-          300: '#59e6ff',
-          400: '#22dcff',
-          500: '#00caff',
-          600: '#009cbf',
-          700: '#00738f',
-          800: '#004d5f',
-          900: '#00262f',
-          950: '#001218',
+        gray: {
+          50: "#f4f6fb",
+          100: "#e6e8f2",
+          200: "#cfd3e1",
+          300: "#b5bccd",
+          400: "#9099ad",
+          500: "#6c758a",
+          600: "#4e5667",
+          700: "#38404d",
+          800: "#242a34",
+          900: "#161a21",
+          950: "#0b0d11"
         },
         secondary: {
           50: '#f8fafc',

@@ -11,7 +11,7 @@ export function Component() {
     <AppContainer paddingX="0" className="min-h-screen transition-colors duration-500 w-full">
       <Container size="xl" className="py-8">
         <Grid cols="grid-cols-1 md:grid-cols-2 lg:grid-cols-3" gap="gap-6">
-          {apod &&
+          {/* {apod &&
             apod.map((item, index) => (
               <Box
                 key={index}
@@ -34,8 +34,6 @@ export function Component() {
                     {item.explicacaoPT}
                   </Text>
 
-                  <Link
-
                   <a
                     href={item.urlHd}
                     target="_blank"
@@ -46,7 +44,7 @@ export function Component() {
                   </a>
                 </Box>
               </Box>
-            ))}
+            ))} */}
         </Grid>
       </Container>
     </AppContainer>
