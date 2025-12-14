@@ -1,6 +1,6 @@
 import { AppContainer } from '@app/layouts'
-import { Button } from '@shadcn/button'
-import { Icon } from '@shadcn/icon'
+import { Button } from '@app/shadcn/components/button'
+import { Icon } from '@app/shadcn/components/icon'
 import { Box, VStack } from '@shadcn/layout'
 import { Text, Title } from '@shadcn/typography'
 import { AlertCircle, ArrowLeft, Home } from 'lucide-react'

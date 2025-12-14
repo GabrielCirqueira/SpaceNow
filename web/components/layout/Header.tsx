@@ -1,5 +1,5 @@
-import { Button } from '@app/shadcn/components/ui/button'
-import { Box, HStack } from '@app/shadcn/components/ui/layout'
+import { Button } from '@app/shadcn/components/button'
+import { Box, HStack } from '@app/shadcn/layout'
 
 const Titulo = () => {
   return (

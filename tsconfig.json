@@ -35,11 +35,10 @@
       "@layouts/*": ["web/layouts/*"],
       "@shadcn/lib/*": ["web/shadcn/lib/*"],
       "@shadcn/hooks/*": ["web/shadcn/hooks/*"],
-      "@shadcn/components/ui/*": ["web/shadcn/components/ui/*"],
-      "@shadcn/layout/*": ["web/shadcn/components/ui/layout/*"],
-      "@shadcn/typography/*": ["web/shadcn/components/ui/typography/*"],
-      "@shadcn/*": ["web/shadcn/components/ui/*"],
-      "@shadcn": ["web/shadcn/components/ui"]
+      "@shadcn/layout/*": ["web/shadcn/layout/*"],
+      "@shadcn/typography/*": ["web/shadcn/typography/*"],
+      "@shadcn/components/*": ["web/shadcn/components/*"],
+      "@shadcn/*": ["web/shadcn/*"]
     },
     "types": ["vite/client"],
     "lib": ["DOM", "ESNext"]

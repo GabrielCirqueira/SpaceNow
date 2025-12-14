@@ -1,8 +1,8 @@
 import { AppContainer } from '@/layouts'
-import { Box, Container, HStack } from '@/shadcn/components/ui/layout'
 import { useApod } from '@app/hooks/useApod'
-import { Icon } from '@app/shadcn/components/ui/icon'
-import { Text } from '@app/shadcn/components/ui/typography'
+import { Icon } from '@app/shadcn/components/icon'
+import { Text } from '@app/shadcn/typography'
+import { Box, Container, HStack } from '@shadcn/layout'
 import { Newspaper, Rocket, Sparkles, Telescope } from 'lucide-react'
 
 export function Component() {
@@ -21,7 +21,6 @@ export function Component() {
             Notícias, descobertas e missões da NASA em um só lugar
           </Text>
         </Box>
-
         <Box>
           <Text className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out text-gray-100">
             Explore o <span className="text-cosmic-500">Universo</span>
