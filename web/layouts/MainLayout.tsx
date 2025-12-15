@@ -23,7 +23,7 @@ export const MainLayout = React.forwardRef<HTMLDivElement, MainLayoutProps>(
         <div className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] bg-navy-500 opacity-30 blur-3xl rounded-full" />
         <Particles
           particleCount={1720}
-          particleSpread={18}
+          particleSpread={12}
           speed={0.13}
           particleBaseSize={50.5}
           sizeRandomness={2}
