@@ -52,21 +52,19 @@ class NasaController extends AbstractController
         }
     }
 
-    #[Route(path: '/blackHole', name: 'black_hole')]
+    #[Route(path: '/test', name: 'black_hole')]
     public function blackHole(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTOs = $nasaAPI
-                ->pesquisa()
-                ->pesquisar(query: 'black hole', mediaType: 'image', limit: 5);
+            $DTOs = $nasaAPI->cameraEpic()->obterImagensRealcadas();
 
-            $dados = array_map(
-                callback: fn($dto): mixed => $dto->jsonSerialize(),
-                array: $DTOs->collection()->items(),
-            );
+            // $dados = array_map(
+            //     callback: fn($dto): mixed => $dto->jsonSerialize(),
+            //     array: $DTOs->collection()->items(),
+            // );
 
             return $this->json(
-                data: ['dados' => $dados, 'status' => 'success'],
+                data: ['dados' => $DTOs, 'status' => 'success'],
                 status: Response::HTTP_OK,
             );
         } catch (\Exception $e) {
