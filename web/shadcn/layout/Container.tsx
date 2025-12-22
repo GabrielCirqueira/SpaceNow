@@ -5,7 +5,7 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   // Optional size mapping. If omitted, no max-w-* is applied so
   // you can control width entirely with Tailwind classes on the
   // component usage.
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
 }
 
 const SIZE_MAP: Record<NonNullable<ContainerProps['size']>, string> = {
@@ -13,6 +13,8 @@ const SIZE_MAP: Record<NonNullable<ContainerProps['size']>, string> = {
   md: 'max-w-screen-md',
   lg: 'max-w-screen-lg',
   xl: 'max-w-screen-xl',
+  '2xl': 'max-w-screen-2xl',
+  '3xl': 'max-w-7xl',
   full: 'max-w-full',
 }
 

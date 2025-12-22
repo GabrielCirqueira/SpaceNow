@@ -1,5 +1,4 @@
 import Header from '@app/components/layout/Header'
-import { AsteroidsBackground } from '@app/components/Particles/AsteroidsBackground/AsteroidsBackground'
 import Particles from '@app/components/Particles/Stars/Particles'
 import { Box } from '@shadcn/layout'
 import { cn } from '@shadcn/lib/utils'
@@ -23,7 +22,7 @@ export const MainLayout = React.forwardRef<HTMLDivElement, MainLayoutProps>(
       >
         <div className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] bg-navy-500 opacity-30 blur-3xl rounded-full" />
 
-        <AsteroidsBackground />
+        {/* <AsteroidsBackground /> */}
         <Particles
           particleCount={1720}
           particleSpread={12}

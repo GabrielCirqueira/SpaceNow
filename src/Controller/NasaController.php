@@ -16,7 +16,7 @@ class NasaController extends AbstractController
         try {
             $DTOs = $nasaAPI
                 ->imagemAstronomicaDia()
-                ->obterPorPeriodo(dataInicio: '2024-06-01', dataFim: '2024-06-05');
+                ->obterPorPeriodo(dataInicio: '2024-06-01', dataFim: '2024-06-01');
 
             $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
 
