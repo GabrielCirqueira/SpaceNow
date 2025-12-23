@@ -3,14 +3,13 @@
 namespace App\DataObject\Requests\Nasa\Pesquisa;
 
 use App\API\TradutorAPI;
-use JsonSerializable;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * DTO para dados (metadata) de mídia na resposta da NASA Images API
+ * DTO para dados (metadata) de mídia na resposta da NASA Images API.
  */
-class DadosPesquisaDTO implements JsonSerializable
+class DadosPesquisaDTO implements \JsonSerializable
 {
     public function __construct(
         #[Assert\Type(Types::STRING)] private string $nasaId,
@@ -29,7 +28,8 @@ class DadosPesquisaDTO implements JsonSerializable
         // Campos traduzidos
         #[Assert\Type(Types::STRING)] private ?string $titlePT = null,
         #[Assert\Type(Types::STRING)] private ?string $descriptionPT = null,
-    ) {}
+    ) {
+    }
 
     public static function deArray(array $dados, ?TradutorAPI $tradutor = null): self
     {
@@ -39,11 +39,11 @@ class DadosPesquisaDTO implements JsonSerializable
         $titlePT = null;
         $descriptionPT = null;
 
-        if ($tradutor !== null && !empty($title)) {
+        if (null !== $tradutor && !empty($title)) {
             $titlePT = $tradutor->traduzir($title);
         }
 
-        if ($tradutor !== null && !empty($description)) {
+        if (null !== $tradutor && !empty($description)) {
             $descriptionPT = $tradutor->traduzir($description);
         }
 

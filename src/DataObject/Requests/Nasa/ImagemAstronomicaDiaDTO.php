@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * DTO para Imagem Astronômica do Dia (APOD)
+ * DTO para Imagem Astronômica do Dia (APOD).
  */
 class ImagemAstronomicaDiaDTO implements \JsonSerializable
 {
@@ -22,7 +22,8 @@ class ImagemAstronomicaDiaDTO implements \JsonSerializable
         #[Assert\Type(Types::STRING)] private ?string $titulo = null,
         #[Assert\Type(Types::STRING)] private ?string $tituloPT = null,
         #[Assert\Type(Types::STRING)] private ?string $url = null,
-    ) {}
+    ) {
+    }
 
     public function obterDireitosAutorais(): ?string
     {

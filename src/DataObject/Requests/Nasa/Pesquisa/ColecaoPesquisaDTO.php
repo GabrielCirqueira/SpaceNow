@@ -17,7 +17,8 @@ class ColecaoPesquisaDTO implements \JsonSerializable
         /** @var ItemPesquisaDTO[] */
         private array $items,
         private ?array $metadata = null,
-    ) {}
+    ) {
+    }
 
     public static function deArray(array $dados, ?TradutorAPI $tradutor = null): self
     {
@@ -62,7 +63,7 @@ class ColecaoPesquisaDTO implements \JsonSerializable
         return [
             'version' => $this->version,
             'href' => $this->href,
-            'items' => array_map(fn($item) => $item->jsonSerialize(), $this->items),
+            'items' => array_map(fn ($item) => $item->jsonSerialize(), $this->items),
             'metadata' => $this->metadata,
         ];
     }

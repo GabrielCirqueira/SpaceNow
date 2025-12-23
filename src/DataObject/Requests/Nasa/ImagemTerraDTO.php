@@ -6,7 +6,7 @@ use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * DTO para Imagem de Satélite da Terra
+ * DTO para Imagem de Satélite da Terra.
  */
 class ImagemTerraDTO implements \JsonSerializable
 {
@@ -15,7 +15,8 @@ class ImagemTerraDTO implements \JsonSerializable
         #[Assert\Type(Types::STRING)] private ?string $url = null,
         #[Assert\Type(Types::STRING)] private ?string $pontuacaoNuvens = null,
         #[Assert\Type(Types::STRING)] private ?string $id = null,
-    ) {}
+    ) {
+    }
 
     public function obterData(): ?string
     {

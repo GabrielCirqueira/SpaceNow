@@ -3,10 +3,10 @@ export interface NasaApod {
   data: string
   explicacao: string
   explicacaoPT: string
-  urlHd: string
+  urlHd: string | null
   tipoMidia: 'image' | 'video'
   versaoServico: string
   titulo: string
   tituloPT: string
-  url: string
+  url: string | null
 }

@@ -2,14 +2,13 @@
 
 namespace App\DataObject\Requests\Nasa\Pesquisa;
 
-use JsonSerializable;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * DTO para links de mídia (imagem/vídeo/áudio) na resposta da NASA Images API
+ * DTO para links de mídia (imagem/vídeo/áudio) na resposta da NASA Images API.
  */
-class LinkPesquisaDTO implements JsonSerializable
+class LinkPesquisaDTO implements \JsonSerializable
 {
     public function __construct(
         #[Assert\Type(Types::STRING)] private string $href,
@@ -18,7 +17,8 @@ class LinkPesquisaDTO implements JsonSerializable
         #[Assert\Type(Types::INTEGER)] private ?int $width = null,
         #[Assert\Type(Types::INTEGER)] private ?int $height = null,
         #[Assert\Type(Types::INTEGER)] private ?int $size = null,
-    ) {}
+    ) {
+    }
 
     public static function deArray(array $dados): self
     {

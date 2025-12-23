@@ -1,6 +1,6 @@
-import * as React from 'react'
 import type * as LabelPrimitive from '@radix-ui/react-label'
 import { Slot } from '@radix-ui/react-slot'
+import * as React from 'react'
 import {
   Controller,
   FormProvider,
@@ -11,7 +11,7 @@ import {
 } from 'react-hook-form'
 
 import { cn } from '@shadcn/lib/utils'
-import { Label } from '@shadcn/label'
+import { Label } from './label'
 
 const Form = FormProvider
 
@@ -160,12 +160,12 @@ const FormMessage = React.forwardRef<
 FormMessage.displayName = 'FormMessage'
 
 export {
-  useFormField,
   Form,
-  FormItem,
-  FormLabel,
   FormControl,
   FormDescription,
-  FormMessage,
   FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useFormField,
 }

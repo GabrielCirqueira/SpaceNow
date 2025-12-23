@@ -3,15 +3,14 @@
 namespace App\DataObject\Requests\Nasa\Pesquisa;
 
 use App\API\TradutorAPI;
-use JsonSerializable;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * DTO para item individual na resposta da NASA Images API
- * Cada item contém um array de dados (data) e um array de links (links)
+ * Cada item contém um array de dados (data) e um array de links (links).
  */
-class ItemPesquisaDTO implements JsonSerializable
+class ItemPesquisaDTO implements \JsonSerializable
 {
     public function __construct(
         #[Assert\Type(Types::STRING)] private string $href,
@@ -19,7 +18,8 @@ class ItemPesquisaDTO implements JsonSerializable
         private array $data,
         /** @var LinkPesquisaDTO[] */
         private array $links,
-    ) {}
+    ) {
+    }
 
     public static function deArray(array $dados, ?TradutorAPI $tradutor = null): self
     {
@@ -61,8 +61,8 @@ class ItemPesquisaDTO implements JsonSerializable
     {
         return [
             'href' => $this->href,
-            'data' => array_map(fn($d) => $d->jsonSerialize(), $this->data),
-            'links' => array_map(fn($l) => $l->jsonSerialize(), $this->links),
+            'data' => array_map(fn ($d) => $d->jsonSerialize(), $this->data),
+            'links' => array_map(fn ($l) => $l->jsonSerialize(), $this->links),
         ];
     }
 }

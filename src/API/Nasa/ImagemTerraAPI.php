@@ -2,15 +2,15 @@
 
 namespace App\API\Nasa;
 
-use App\Infra\NasaApiClient;
 use App\DataObject\Requests\Nasa\ImagemTerraDTO;
+use App\Infra\NasaApiClient;
 use GuzzleHttp\Client;
 
 /**
  * API de Imagens de Satélite da Terra
  * Categoria: Planetary APIs - Earth Imagery & Assets
  * Endpoint base: /planetary/earth/
- * Docs: https://api.nasa.gov/
+ * Docs: https://api.nasa.gov/.
  */
 class ImagemTerraAPI extends NasaApiClient
 {
@@ -20,13 +20,13 @@ class ImagemTerraAPI extends NasaApiClient
     }
 
     /**
-     * Retorna imagem de satélite para coordenadas específicas
-     * @param float $latitude Latitude
-     * @param float $longitude Longitude
-     * @param string|null $data Data da imagem (YYYY-MM-DD)
-     * @param float|null $dimensao Dimensão em graus
-     * @param bool $pontuacaoNuvens Incluir pontuação de nuvens
-     * @return ImagemTerraDTO
+     * Retorna imagem de satélite para coordenadas específicas.
+     *
+     * @param float       $latitude        Latitude
+     * @param float       $longitude       Longitude
+     * @param string|null $data            Data da imagem (YYYY-MM-DD)
+     * @param float|null  $dimensao        Dimensão em graus
+     * @param bool        $pontuacaoNuvens Incluir pontuação de nuvens
      */
     public function obterImagem(
         float $latitude,
@@ -58,12 +58,12 @@ class ImagemTerraAPI extends NasaApiClient
     }
 
     /**
-     * Retorna assets disponíveis para coordenadas e período
-     * @param float $latitude Latitude
-     * @param float $longitude Longitude
+     * Retorna assets disponíveis para coordenadas e período.
+     *
+     * @param float  $latitude   Latitude
+     * @param float  $longitude  Longitude
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @return array
+     * @param string $dataFim    Data final (YYYY-MM-DD)
      */
     public function obterAssets(
         float $latitude,

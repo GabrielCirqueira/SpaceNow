@@ -10,20 +10,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/nasa')]
 class NasaController extends AbstractController
 {
-    #[Route(path: '/imagemAstronomicaDia', name: 'imagem_astronomica_dia')]
+    #[Route(path: '/apodDay', name: 'imagem_astronomica_dia')]
     public function imagemAstronomicaDia(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTOs = $nasaAPI
-                ->imagemAstronomicaDia()
-                ->obterPorPeriodo(dataInicio: '2024-06-01', dataFim: '2024-06-01');
+            $DTO = $nasaAPI->imagemAstronomicaDia()->obterUltimos(limit: 1);
 
-            $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
+            $dados = array_map(callback: fn ($dto): mixed => $dto->jsonSerialize(), array: $DTO);
 
-            return $this->json(
-                data: ['dados' => $dados, 'status' => 'success'],
-                status: Response::HTTP_OK,
-            );
+            return $this->json(data: $dados[0], status: Response::HTTP_OK);
         } catch (\Exception $e) {
             return $this->json(
                 data: ['mensagem' => $e->getMessage(), 'status' => 'error'],
@@ -36,9 +31,9 @@ class NasaController extends AbstractController
     public function apod(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTOs = $nasaAPI->imagemAstronomicaDia()->obterUltimos(limit: 20);
+            $DTOs = $nasaAPI->imagemAstronomicaDia()->obterPorPeriodo('2020-01-01', '2020-03-01');
 
-            $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
+            $dados = array_map(callback: fn ($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
 
             return $this->json(
                 data: ['dados' => $dados, 'status' => 'success'],

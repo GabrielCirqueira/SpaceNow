@@ -1,18 +1,24 @@
 import { AppContainer } from '@/layouts'
-import { useApodDay } from '@app/hooks/useApod'
+import { useApodDay } from '@app/hooks/queries/useApodDay'
+import { Button } from '@app/shadcn/components'
 import { Icon } from '@app/shadcn/components/icon'
 import { Text } from '@app/shadcn/typography'
-import { Box, Container, HStack, Image } from '@shadcn/layout'
-import { Calendar, Newspaper, Rocket, Sparkles, Telescope } from 'lucide-react'
+import { formatDate } from '@app/utils/formatDate'
+import { getImageRandom } from '@app/utils/imageRandom'
+import { Box, Container, HStack, Image, VStack } from '@shadcn/layout'
+import { BadgeInfo, Calendar, Newspaper, Rocket, Sparkles, Telescope } from 'lucide-react'
 
 export function Component() {
-  const { apod } = useApodDay()
+  const { data } = useApodDay()
 
-  console.log(apod)
+  console.log(data)
 
-  console.log('dados APOD', apod)
+  console.log('dados APOD', data)
   return (
-    <AppContainer paddingX="0" className="min-h-screen transition-colors duration-500 w-full">
+    <AppContainer
+      paddingX="0"
+      className="flex flex-col gap-44 min-h-screen transition-colors duration-500 w-full"
+    >
       <div className="pointer-events-none absolute top-1/4 -left-32 h-[500px] w-[500px] bg-cosmic-700 opacity-20 blur-[120px] rounded-full animate-pulse" />
       <div className="pointer-events-none absolute bottom-1/4 -right-32 h-[500px] w-[500px] bg-nebula-700 opacity-20 blur-[120px] rounded-full animate-pulse" />
 
@@ -69,14 +75,48 @@ export function Component() {
         </HStack>
 
         <HStack className="itens-start w-full">
-          <Text className="text-5xl font-bold animate-in fade-in duration-700 ease-out text-gray-100">
-            A maravilha de <span className="text-cosmic-500">Hoje</span>
-          </Text>
+          <VStack>
+            <Text className="text-5xl font-bold animate-in fade-in duration-700 ease-out text-gray-100">
+              A maravilha de <span className="text-cosmic-500">Hoje</span>
+            </Text>
+            <Text className="text-gray-400">
+              Todos os dias a NASA, seleciona uma imagem ou video impressionante do <br /> Univerno
+            </Text>
+          </VStack>
         </HStack>
 
-        <HStack>
-          <Box>
-            <Image src={apod?.urlHd}></Image>
+        <HStack className="itens-start w-full items-stretch gap-5">
+          <Box className="flex-1">
+            <div className="w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-xl">
+              <Image
+                className="w-full h-full object-cover object-center rounded-2xl glow-cosmic-as border-gray-700 border-2"
+                src={data?.urlHd ?? getImageRandom()}
+              />
+            </div>
+          </Box>
+
+          <Box className="flex-1 h-10">
+            <VStack className="h-full gap-5">
+              <HStack>
+                <Text className="font-bold text-2xl">{data?.tituloPT}</Text>
+              </HStack>
+              <HStack>
+                <Text className="line-clamp-5 text-md text-gray-300">{data?.explicacaoPT}</Text>
+              </HStack>
+              <HStack>
+                <Button className=" bg-gradient-to-r from-cosmic-500 via-cosmic-600 to-nebula-700">
+                  <Icon icon={BadgeInfo} className="text-gray-100" />
+                  <Text className="text-gray-100">Ver mais</Text>
+                </Button>
+              </HStack>
+              <hr className="border-1 border-gray-700 w-full" />
+              <HStack>
+                <Box className="flex flex-row gap-3 border-gray-500 border-1 px-3 py-1 rounded-3xl">
+                  <Icon icon={Calendar} size={16} className="" />
+                  <Text className="text-gray-200 text-xs">{formatDate(data?.data)}</Text>
+                </Box>
+              </HStack>
+            </VStack>
           </Box>
         </HStack>
       </Container>

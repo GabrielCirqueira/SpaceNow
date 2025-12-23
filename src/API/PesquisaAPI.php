@@ -2,13 +2,12 @@
 
 namespace App\API;
 
-use App\Infra\NasaPesquisaApiClient;
 use App\DataObject\Requests\Nasa\ResultadoPesquisaDTO;
-use App\API\TradutorAPI;
+use App\Infra\NasaPesquisaApiClient;
 use GuzzleHttp\Client;
 
 /**
- * API de Pesquisa Geral da NASA (imagens, vídeos, áudios)
+ * API de Pesquisa Geral da NASA (imagens, vídeos, áudios).
  */
 class PesquisaAPI extends NasaPesquisaApiClient
 {
@@ -21,14 +20,13 @@ class PesquisaAPI extends NasaPesquisaApiClient
     }
 
     /**
-     * Pesquisa imagens, vídeos e áudios da NASA
+     * Pesquisa imagens, vídeos e áudios da NASA.
      *
-     * @param string $query Termo de busca (obrigatório)
+     * @param string      $query     Termo de busca (obrigatório)
      * @param string|null $mediaType Tipo de mídia: 'image', 'video', 'audio'
-     * @param int $limit Quantidade de resultados (1-100, padrão: 10)
+     * @param int         $limit     Quantidade de resultados (1-100, padrão: 10)
      * @param string|null $yearStart Ano de início (YYYY)
-     * @param string|null $yearEnd Ano de fim (YYYY)
-     * @return ResultadoPesquisaDTO
+     * @param string|null $yearEnd   Ano de fim (YYYY)
      */
     public function pesquisar(
         string $query,
@@ -39,18 +37,18 @@ class PesquisaAPI extends NasaPesquisaApiClient
     ): ResultadoPesquisaDTO {
         $params = ['q' => $query];
 
-        if ($mediaType !== null) {
+        if (null !== $mediaType) {
             $params['media_type'] = $mediaType;
         }
 
         $limit = max(1, min(100, $limit));
         $params['page_size'] = $limit;
 
-        if ($yearStart !== null) {
+        if (null !== $yearStart) {
             $params['year_start'] = $yearStart;
         }
 
-        if ($yearEnd !== null) {
+        if (null !== $yearEnd) {
             $params['year_end'] = $yearEnd;
         }
 
@@ -74,8 +72,7 @@ class PesquisaAPI extends NasaPesquisaApiClient
 
     /**
      * @param string $query Termo de busca
-     * @param int $limit Quantidade de resultados (1-100, padrão: 10)
-     * @return ResultadoPesquisaDTO
+     * @param int    $limit Quantidade de resultados (1-100, padrão: 10)
      */
     public function pesquisarImagens(string $query, int $limit = 10): ResultadoPesquisaDTO
     {
@@ -83,10 +80,10 @@ class PesquisaAPI extends NasaPesquisaApiClient
     }
 
     /**
-     * Pesquisa apenas vídeos
+     * Pesquisa apenas vídeos.
+     *
      * @param string $query Termo de busca
-     * @param int $limit Quantidade de resultados (1-100, padrão: 10)
-     * @return ResultadoPesquisaDTO
+     * @param int    $limit Quantidade de resultados (1-100, padrão: 10)
      */
     public function pesquisarVideos(string $query, int $limit = 10): ResultadoPesquisaDTO
     {

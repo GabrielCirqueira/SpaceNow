@@ -2,16 +2,16 @@
 
 namespace App\API\Nasa;
 
-use App\Infra\NasaApiClient;
-use App\DataObject\Requests\Nasa\ObjetoProximoTerraDTO;
 use App\API\TradutorAPI;
+use App\DataObject\Requests\Nasa\ObjetoProximoTerraDTO;
+use App\Infra\NasaApiClient;
 use GuzzleHttp\Client;
 
 /**
  * API de Objetos Próximos à Terra - NeoWs (Asteroides)
  * Categoria: NEO - Near Earth Objects
  * Endpoint base: /neo/rest/v1/
- * Docs: https://api.nasa.gov/
+ * Docs: https://api.nasa.gov/.
  */
 class ObjetoProximoTerraAPI extends NasaApiClient
 {
@@ -24,9 +24,11 @@ class ObjetoProximoTerraAPI extends NasaApiClient
     }
 
     /**
-     * Retorna feed de objetos próximos à Terra em intervalo de datas
+     * Retorna feed de objetos próximos à Terra em intervalo de datas.
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
+     * @param string $dataFim    Data final (YYYY-MM-DD)
+     *
      * @return ObjetoProximoTerraDTO[]
      */
     public function obterFeed(string $dataInicio, string $dataFim): array
@@ -53,9 +55,9 @@ class ObjetoProximoTerraAPI extends NasaApiClient
     }
 
     /**
-     * Retorna asteroide específico por ID
+     * Retorna asteroide específico por ID.
+     *
      * @param string $idAsteroide ID do asteroide
-     * @return ObjetoProximoTerraDTO
      */
     public function obterPorId(string $idAsteroide): ObjetoProximoTerraDTO
     {
@@ -65,8 +67,10 @@ class ObjetoProximoTerraAPI extends NasaApiClient
     }
 
     /**
-     * Navega lista paginada de objetos próximos à Terra
+     * Navega lista paginada de objetos próximos à Terra.
+     *
      * @param int $pagina Número da página
+     *
      * @return ObjetoProximoTerraDTO[]
      */
     public function navegarLista(int $pagina = 0): array
@@ -79,7 +83,7 @@ class ObjetoProximoTerraAPI extends NasaApiClient
         }
 
         return array_map(
-            fn($data) => ObjetoProximoTerraDTO::deArray($data, $this->tradutor),
+            fn ($data) => ObjetoProximoTerraDTO::deArray($data, $this->tradutor),
             $response['near_earth_objects'],
         );
     }

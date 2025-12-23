@@ -2,9 +2,9 @@
 
 namespace App\API\Nasa;
 
-use App\Infra\NasaApiClient;
-use App\DataObject\Requests\Nasa\EventoDonkiDTO;
 use App\API\TradutorAPI;
+use App\DataObject\Requests\Nasa\EventoDonkiDTO;
+use App\Infra\NasaApiClient;
 use GuzzleHttp\Client;
 
 /**
@@ -12,7 +12,7 @@ use GuzzleHttp\Client;
  * Database Of Notifications, Knowledge, Information
  * Categoria: DONKI - Space Weather
  * Endpoint base: /DONKI/
- * Docs: https://api.nasa.gov/
+ * Docs: https://api.nasa.gov/.
  */
 class ClimaEspacialAPI extends NasaApiClient
 {
@@ -25,9 +25,11 @@ class ClimaEspacialAPI extends NasaApiClient
     }
 
     /**
-     * Retorna eventos de erupções solares (Solar Flares - FLR)
+     * Retorna eventos de erupções solares (Solar Flares - FLR).
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
+     * @param string $dataFim    Data final (YYYY-MM-DD)
+     *
      * @return EventoDonkiDTO[]
      */
     public function obterErupcoesSolares(string $dataInicio, string $dataFim): array
@@ -39,14 +41,14 @@ class ClimaEspacialAPI extends NasaApiClient
 
         $response = $this->get(endpoint: 'DONKI/FLR', params: $params);
 
-        return array_map(fn($data) => EventoDonkiDTO::deArray($data, $this->tradutor), $response);
+        return array_map(fn ($data) => EventoDonkiDTO::deArray($data, $this->tradutor), $response);
     }
 
     /**
-     * Retorna eventos de ejeção de massa coronal (CME)
+     * Retorna eventos de ejeção de massa coronal (CME).
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @return array
+     * @param string $dataFim    Data final (YYYY-MM-DD)
      */
     public function obterEjecaoMassaCoronal(string $dataInicio, string $dataFim): array
     {
@@ -61,10 +63,10 @@ class ClimaEspacialAPI extends NasaApiClient
     }
 
     /**
-     * Retorna eventos de tempestades geomagnéticas (GST)
+     * Retorna eventos de tempestades geomagnéticas (GST).
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @return array
+     * @param string $dataFim    Data final (YYYY-MM-DD)
      */
     public function obterTempestadesGeomagneticas(string $dataInicio, string $dataFim): array
     {
@@ -79,10 +81,10 @@ class ClimaEspacialAPI extends NasaApiClient
     }
 
     /**
-     * Retorna simulações WSA+Enlil
+     * Retorna simulações WSA+Enlil.
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @return array
+     * @param string $dataFim    Data final (YYYY-MM-DD)
      */
     public function obterSimulacoesWSAEnlil(string $dataInicio, string $dataFim): array
     {
@@ -97,10 +99,10 @@ class ClimaEspacialAPI extends NasaApiClient
     }
 
     /**
-     * Retorna eventos SEP (Solar Energetic Particle)
+     * Retorna eventos SEP (Solar Energetic Particle).
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @return array
+     * @param string $dataFim    Data final (YYYY-MM-DD)
      */
     public function obterEventosSEP(string $dataInicio, string $dataFim): array
     {
@@ -115,10 +117,10 @@ class ClimaEspacialAPI extends NasaApiClient
     }
 
     /**
-     * Retorna eventos IPS (Interplanetary Shocks)
+     * Retorna eventos IPS (Interplanetary Shocks).
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @return array
+     * @param string $dataFim    Data final (YYYY-MM-DD)
      */
     public function obterChoquesInterplanetarios(string $dataInicio, string $dataFim): array
     {
@@ -133,10 +135,10 @@ class ClimaEspacialAPI extends NasaApiClient
     }
 
     /**
-     * Retorna eventos MPC (Magnetopause Crossing)
+     * Retorna eventos MPC (Magnetopause Crossing).
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @return array
+     * @param string $dataFim    Data final (YYYY-MM-DD)
      */
     public function obterCruzamentosMagnetopausa(string $dataInicio, string $dataFim): array
     {
@@ -151,10 +153,10 @@ class ClimaEspacialAPI extends NasaApiClient
     }
 
     /**
-     * Retorna eventos RBE (Radiation Belt Enhancements)
+     * Retorna eventos RBE (Radiation Belt Enhancements).
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @return array
+     * @param string $dataFim    Data final (YYYY-MM-DD)
      */
     public function obterMelhoriasCinturaoRadiacao(string $dataInicio, string $dataFim): array
     {
@@ -169,11 +171,11 @@ class ClimaEspacialAPI extends NasaApiClient
     }
 
     /**
-     * Retorna notificações de eventos
-     * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
-     * @param string|null $tipo Tipo de notificação
-     * @return array
+     * Retorna notificações de eventos.
+     *
+     * @param string      $dataInicio Data inicial (YYYY-MM-DD)
+     * @param string      $dataFim    Data final (YYYY-MM-DD)
+     * @param string|null $tipo       Tipo de notificação
      */
     public function obterNotificacoes(
         string $dataInicio,

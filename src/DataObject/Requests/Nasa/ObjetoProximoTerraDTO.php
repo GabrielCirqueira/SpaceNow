@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * DTO para Objeto Próximo à Terra (NEO)
+ * DTO para Objeto Próximo à Terra (NEO).
  */
 class ObjetoProximoTerraDTO implements \JsonSerializable
 {
@@ -19,7 +19,8 @@ class ObjetoProximoTerraDTO implements \JsonSerializable
         #[Assert\Type(Types::BOOLEAN)] private ?bool $potencialmentePerigoso = null,
         private ?array $dadosAproximacao = null,
         private ?array $diametroEstimado = null,
-    ) {}
+    ) {
+    }
 
     public function obterId(): ?string
     {

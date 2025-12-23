@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * DTO para Evento DONKI (Clima Espacial)
+ * DTO para Evento DONKI (Clima Espacial).
  */
 class EventoDonkiDTO implements \JsonSerializable
 {
@@ -20,7 +20,8 @@ class EventoDonkiDTO implements \JsonSerializable
         #[Assert\Type(Types::STRING)] private ?string $localizacaoOrigem = null,
         #[Assert\Type(Types::STRING)] private ?string $localizacaoOrigemPT = null,
         private ?array $eventosVinculados = null,
-    ) {}
+    ) {
+    }
 
     public function obterIdAtividade(): ?string
     {

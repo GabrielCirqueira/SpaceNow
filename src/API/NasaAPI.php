@@ -2,16 +2,15 @@
 
 namespace App\API;
 
-use App\API\Nasa\ImagemAstronomicaDiaAPI;
-use App\API\Nasa\ObjetoProximoTerraAPI;
-use App\API\Nasa\ImagemTerraAPI;
 use App\API\Nasa\CameraEpicAPI;
 use App\API\Nasa\ClimaEspacialAPI;
-use App\API\PesquisaAPI;
+use App\API\Nasa\ImagemAstronomicaDiaAPI;
+use App\API\Nasa\ImagemTerraAPI;
+use App\API\Nasa\ObjetoProximoTerraAPI;
 
 /**
  * Facade/Agregador para todas as APIs da NASA
- * Delega as chamadas para as classes especializadas organizadas por categoria
+ * Delega as chamadas para as classes especializadas organizadas por categoria.
  */
 class NasaAPI
 {
@@ -22,7 +21,8 @@ class NasaAPI
         private CameraEpicAPI $cameraEpicAPI,
         private ClimaEspacialAPI $climaEspacialAPI,
         private PesquisaAPI $pesquisaAPI,
-    ) {}
+    ) {
+    }
 
     public function imagemAstronomicaDia(): ImagemAstronomicaDiaAPI
     {

@@ -71,6 +71,14 @@
     filter: drop-shadow(0 0 4px theme('colors.cosmic.500'));
   }
 
+  .border-1 {
+    border-width: 1px;
+  }
+
+  .glow-cosmic-as {
+    filter: drop-shadow(0 0 12px theme('colors.cosmic.500 / 0.2'));
+  }
+
   .glow-nebula {
     filter: drop-shadow(0 0 8px theme('colors.nebula.500'));
   }

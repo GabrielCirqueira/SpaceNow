@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * DTO para Imagem EPIC (Câmera Policromática da Terra)
+ * DTO para Imagem EPIC (Câmera Policromática da Terra).
  */
 class ImagemEpicDTO implements \JsonSerializable
 {
@@ -23,7 +23,8 @@ class ImagemEpicDTO implements \JsonSerializable
         private ?array $posicaoLunarJ2000 = null,
         private ?array $posicaoSolarJ2000 = null,
         private ?array $quaterniosAtitude = null,
-    ) {}
+    ) {
+    }
 
     public function obterIdentificador(): ?string
     {

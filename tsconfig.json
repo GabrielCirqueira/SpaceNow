@@ -46,12 +46,15 @@
   "include": [
     "assets/js",
     "web/components",
+    "web/http",
+    "web/services",
     "web/layouts",
     "web/pages",
     "web/themes",
     "web/App.tsx",
     "web/main.tsx",
-    "web/vite-env.d.ts"
+    "web/vite-env.d.ts",
+    "web/**/*"
   ],
   "exclude": ["node_modules", "vendor", "public/build"]
 }

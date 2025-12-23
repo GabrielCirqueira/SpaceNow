@@ -1,5 +1,7 @@
 import { ThemeProvider } from '@/contexts'
 import { MainLayout } from '@app/layouts'
+import { queryClient } from '@app/lib/queryClient'
+import { QueryClientProvider } from '@tanstack/react-query'
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -20,8 +22,10 @@ const router = createBrowserRouter(
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }

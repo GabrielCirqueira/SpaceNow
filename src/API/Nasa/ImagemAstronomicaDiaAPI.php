@@ -2,16 +2,16 @@
 
 namespace App\API\Nasa;
 
-use App\Infra\NasaApiClient;
-use App\DataObject\Requests\Nasa\ImagemAstronomicaDiaDTO;
 use App\API\TradutorAPI;
+use App\DataObject\Requests\Nasa\ImagemAstronomicaDiaDTO;
+use App\Infra\NasaApiClient;
 use GuzzleHttp\Client;
 
 /**
  * API de Imagens Astronômicas do Dia (APOD)
  * Categoria: Planetary APIs
  * Endpoint base: /planetary/apod
- * Docs: https://api.nasa.gov/
+ * Docs: https://api.nasa.gov/.
  */
 class ImagemAstronomicaDiaAPI extends NasaApiClient
 {
@@ -24,9 +24,11 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
     }
 
     /**
-     * Retorna imagens astronômicas do dia em um intervalo de datas
+     * Retorna imagens astronômicas do dia em um intervalo de datas.
+     *
      * @param string $dataInicio Data inicial (YYYY-MM-DD)
-     * @param string $dataFim Data final (YYYY-MM-DD)
+     * @param string $dataFim    Data final (YYYY-MM-DD)
+     *
      * @return ImagemAstronomicaDiaDTO[]
      */
     public function obterPorPeriodo(string $dataInicio, string $dataFim): array
@@ -39,15 +41,15 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
         $response = $this->get(endpoint: 'planetary/apod', params: $params);
 
         return array_map(
-            fn($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor),
+            fn ($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor),
             $response,
         );
     }
 
     /**
-     * Retorna imagem astronômica de uma data específica
+     * Retorna imagem astronômica de uma data específica.
+     *
      * @param string $data Data (YYYY-MM-DD)
-     * @return ImagemAstronomicaDiaDTO
      */
     public function obterPorData(string $data): ImagemAstronomicaDiaDTO
     {
@@ -58,8 +60,10 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
     }
 
     /**
-     * Retorna imagens astronômicas aleatórias
+     * Retorna imagens astronômicas aleatórias.
+     *
      * @param int $quantidade Quantidade de imagens
+     *
      * @return ImagemAstronomicaDiaDTO[]
      */
     public function obterAleatorio(int $quantidade = 1): array
@@ -68,16 +72,19 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
         $response = $this->get(endpoint: 'planetary/apod', params: $params);
 
         return array_map(
-            fn($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor),
+            fn ($data) => ImagemAstronomicaDiaDTO::deArray($data, $this->tradutor),
             $response,
         );
     }
 
     /**
-     * Retorna os últimos N registros (a partir de hoje ou de uma data final informada)
-     * @param int $limit Quantidade de registros desejada (>= 1)
+     * Retorna os últimos N registros (a partir de hoje ou de uma data final informada).
+     *
+     * @param int         $limit   Quantidade de registros desejada (>= 1)
      * @param string|null $dataFim Data final no formato YYYY-MM-DD (opcional). Se não informada, usa hoje.
+     *
      * @return ImagemAstronomicaDiaDTO[]
+     *
      * @throws \InvalidArgumentException
      */
     public function obterUltimos(int $limit, ?string $dataFim = null): array
@@ -90,7 +97,7 @@ class ImagemAstronomicaDiaAPI extends NasaApiClient
         $endStr = $end->format('Y-m-d');
 
         $days = $limit - 1;
-        $intervalSpec = 'P' . $days . 'D';
+        $intervalSpec = 'P'.$days.'D';
         $start = $end->sub(new \DateInterval($intervalSpec));
         $startStr = $start->format('Y-m-d');
 
