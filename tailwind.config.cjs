@@ -267,6 +267,7 @@ module.exports = {
       },
       animation: {
         float: 'float 4s ease-in-out infinite',
+        'float-1': 'float 12s ease-in-out infinite',
       },
     }
   },

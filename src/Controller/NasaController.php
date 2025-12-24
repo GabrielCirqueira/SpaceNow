@@ -14,9 +14,9 @@ class NasaController extends AbstractController
     public function imagemAstronomicaDia(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTO = $nasaAPI->imagemAstronomicaDia()->obterUltimos(limit: 1);
+            $DTO = $nasaAPI->imagemAstronomicaDia()->obterAleatorio(1);
 
-            $dados = array_map(callback: fn ($dto): mixed => $dto->jsonSerialize(), array: $DTO);
+            $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTO);
 
             return $this->json(data: $dados[0], status: Response::HTTP_OK);
         } catch (\Exception $e) {
@@ -33,7 +33,7 @@ class NasaController extends AbstractController
         try {
             $DTOs = $nasaAPI->imagemAstronomicaDia()->obterPorPeriodo('2020-01-01', '2020-03-01');
 
-            $dados = array_map(callback: fn ($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
+            $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
 
             return $this->json(
                 data: ['dados' => $dados, 'status' => 'success'],

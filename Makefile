@@ -24,7 +24,7 @@ up: ## Start all services in attached mode
 	$(COMPOSE_CMD) up
 
 up-d: ## Start all services in detached mode
-	$(COMPOSE_CMD) --remove-orphans
+	$(COMPOSE_CMD) down --remove-orphans
 	$(COMPOSE_CMD) up -d --remove-orphans
 
 restart: ## Restart the stack in detached mode

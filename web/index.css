@@ -76,7 +76,7 @@
   }
 
   .glow-cosmic-as {
-    filter: drop-shadow(0 0 12px theme('colors.cosmic.500 / 0.2'));
+    filter: drop-shadow(0 0 15px theme('colors.cosmic.500 / 0.2'));
   }
 
   .glow-nebula {
