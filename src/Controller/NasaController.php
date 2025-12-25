@@ -14,7 +14,7 @@ class NasaController extends AbstractController
     public function imagemAstronomicaDia(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTO = $nasaAPI->imagemAstronomicaDia()->obterAleatorio(1);
+            $DTO = $nasaAPI->imagemAstronomicaDia()->obterUltimos(1);
 
             $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTO);
 
