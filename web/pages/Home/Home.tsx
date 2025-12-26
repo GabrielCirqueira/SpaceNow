@@ -1,12 +1,10 @@
 import { AppContainer } from '@/layouts'
-import { useApodDay } from '@app/hooks/queries/useApodDay'
+import { useApod, useApodDay } from '@app/hooks/queries/useApodDay'
 import {
   Button,
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogHeader,
-  DialogTitle,
   SkeletonBlock,
   SkeletonWrapper,
 } from '@app/shadcn/components'
@@ -37,13 +35,11 @@ type ModalImageProps = {
 const ModalImage = ({ openModal, setOpenModal, imageUrl, title }: ModalImageProps) => {
   return (
     <Dialog open={openModal} onOpenChange={setOpenModal}>
-      <DialogContent className="bg-gray-800/35">
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-        </DialogHeader>
-        <hr className="border-1 border-gray-700 w-full" />
-
+      <DialogContent className="bg-gray-800/35 p-0">
         <Image src={imageUrl} alt={title} className="rounded-sm" />
+        <Box className="max-w-3/4 absolute bottom-4 left-1/2 -translate-x-1/2 border-2 border-gray-100 px-5 py-1 rounded-3xl">
+          <Text>{title}</Text>
+        </Box>
       </DialogContent>
     </Dialog>
   )
@@ -100,7 +96,9 @@ const ModalApod = ({ openModal, setOpenModal, data }: ModalApodProps) => {
             </HStack>
 
             <HStack className="w-full p-5">
-              <Text className="text-sm md:text-md text-gray-300">{data?.explicacaoPT}</Text>
+              <Text className="text-justify text-sm md:text-md text-gray-300">
+                {data?.explicacaoPT}
+              </Text>
             </HStack>
           </VStack>
         </DialogDescription>
@@ -111,8 +109,11 @@ const ModalApod = ({ openModal, setOpenModal, data }: ModalApodProps) => {
 
 export function Component() {
   const { data, isLoading } = useApodDay()
+  const { data: dataApod, isLoading: isLoadingApod } = useApod()
   const [openModalImage, setOpenModalImage] = useState(false)
   const [openModalApod, setOpenModalApod] = useState(false)
+
+  console.log(dataApod)
 
   return (
     <AppContainer
@@ -196,17 +197,34 @@ export function Component() {
           </VStack>
         </HStack>
 
-        <HStack className="items-start w-full items-stretch gap-5 flex-col md:flex-row">
+        <HStack className="items-start w-full gap-5 flex-col md:flex-row">
           <Box className="flex-1">
-            <div className="w-full max-w-5xl aspect-[16/9] glow-cosmic-as overflow-hidden rounded-xl">
+            <div className="w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-xl group relative cursor-pointer ">
               <SkeletonWrapper
                 isLoading={isLoading}
+                className="flex items-center justify-center w-full h-full"
                 fallback={<SkeletonBlock className="w-full h-full" />}
               >
-                <Image
-                  className="w-full h-full object-cover object-center rounded-2xl"
-                  src={data?.urlHd ?? getImageRandom()}
-                />
+                <Box className="flex justify-center items-center">
+                  <Image
+                    className="w-full h-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110 "
+                    src={data?.urlHd ?? getImageRandom()}
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                  <Button
+                    className="
+                      absolute left-1/2 top-2/4 -translate-x-1/2 w-1/3
+                      flex items-center justify-center bg-transparent border-2 border-gray-300
+                      opacity-0 transition-all duration-700 rounded-3xl
+                      group-hover:opacity-100 group-hover:translate-y-0
+                    "
+                  >
+                    <HStack className="justify-center items-center">
+                      <Text className="text-gray-300">Abrir em HD</Text>
+                    </HStack>
+                  </Button>
+                </Box>
               </SkeletonWrapper>
             </div>
           </Box>
@@ -227,7 +245,7 @@ export function Component() {
                   isLoading={isLoading}
                   fallback={<SkeletonBlock className="w-full h-44" />}
                 >
-                  <Text className="line-clamp-5 text-sm md:text-md text-gray-300">
+                  <Text className="line-clamp-5 text-sm md:text-md text-gray-300 text-justify">
                     {data?.explicacaoPT}
                   </Text>
                 </SkeletonWrapper>
@@ -238,7 +256,7 @@ export function Component() {
                   fallback={<SkeletonBlock className="w-1/4 h-10" />}
                 >
                   {data?.urlHd && (
-                    <Button className="bg-nebula-700" onClick={() => setOpenModalImage(true)}>
+                    <Button className="bg-nebula-700 w-1/3" onClick={() => setOpenModalImage(true)}>
                       <Icon icon={BadgeInfo} className="stroke-gray-100" />
                       <Text className="text-gray-100">Ver em HD</Text>
                     </Button>
@@ -249,7 +267,7 @@ export function Component() {
                   fallback={<SkeletonBlock className="w-1/4 h-10" />}
                 >
                   <Button
-                    className=" bg-gradient-to-r from-cosmic-500 via-cosmic-600 to-nebula-700"
+                    className="w-1/3 bg-gradient-to-r from-cosmic-500 via-cosmic-600 to-nebula-700"
                     onClick={() => setOpenModalApod(true)}
                   >
                     <Icon icon={BadgeInfo} className="stroke-gray-100" />
@@ -272,6 +290,55 @@ export function Component() {
             </VStack>
           </Box>
         </HStack>
+      </Container>
+      <Container
+        className='
+          flex flex-col items-start
+          justify-start gap-7
+          bg-red-5100 relative
+          mx-auto
+          max-w-7xl
+          rounded-3xl
+          bg-black/10
+          backdrop-blur-xl
+          animate-float-1
+          border border-white/10
+          px-8"
+      '
+      >
+        <SkeletonWrapper isLoading={isLoadingApod} fallback={<SkeletonBlock />}>
+          <Box className="py-6 grid grid-cols-3 gap-6">
+            {dataApod.map((apod) => (
+              <Box className="bg-black/40 border border-white/20 rounded-lg">
+                <VStack className="gap-5 pb-5">
+                  <HStack>
+                    <div className="w-full max-w-5xl aspect-[16/9] overflow-hidden ">
+                      <Image
+                        className="
+                        w-full h-full object-cover object-center rounded-lg
+                        [mask-image:linear-gradient(to_bottom,black_30%,transparent_100%)]
+                        [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
+                      "
+                        src={apod.urlHd ?? apod.url}
+                      />
+                    </div>
+                  </HStack>
+                  <HStack></HStack>
+                  <HStack className="px-3">
+                    <VStack>
+                      <Text className="text-gray-100 font-semibold text-sm line-clamp-3">
+                        {apod.tituloPT}
+                      </Text>
+                      <Text className="text-gray-400 text-xs line-clamp-3 text-justify">
+                        {apod.explicacaoPT}
+                      </Text>
+                    </VStack>
+                  </HStack>
+                </VStack>
+              </Box>
+            ))}
+          </Box>
+        </SkeletonWrapper>
       </Container>
       {data?.urlHd && (
         <ModalImage

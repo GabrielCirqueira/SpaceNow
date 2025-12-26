@@ -31,14 +31,11 @@ class NasaController extends AbstractController
     public function apod(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTOs = $nasaAPI->imagemAstronomicaDia()->obterPorPeriodo('2020-01-01', '2020-03-01');
+            $DTOs = $nasaAPI->imagemAstronomicaDia()->obterUltimos(9);
 
             $dados = array_map(callback: fn($dto): mixed => $dto->jsonSerialize(), array: $DTOs);
 
-            return $this->json(
-                data: ['dados' => $dados, 'status' => 'success'],
-                status: Response::HTTP_OK,
-            );
+            return $this->json(data: $dados, status: Response::HTTP_OK);
         } catch (\Exception $e) {
             return $this->json(
                 data: ['mensagem' => $e->getMessage(), 'status' => 'error'],
@@ -51,7 +48,7 @@ class NasaController extends AbstractController
     public function blackHole(NasaAPI $nasaAPI): Response
     {
         try {
-            $DTOs = $nasaAPI->cameraEpic()->obterImagensRealcadas();
+            $DTOs = $nasaAPI->cameraEpic()->obterImagensNaturaisPorData('2025-02-02');
 
             // $dados = array_map(
             //     callback: fn($dto): mixed => $dto->jsonSerialize(),
