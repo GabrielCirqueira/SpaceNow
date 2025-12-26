@@ -11,12 +11,20 @@ import {
   SkeletonWrapper,
 } from '@app/shadcn/components'
 import { Icon } from '@app/shadcn/components/icon'
-import { Text, Title } from '@app/shadcn/typography'
+import { Text } from '@app/shadcn/typography'
 import { NasaApod } from '@app/types/Nasa/apod'
 import { formatDate } from '@app/utils/formatDate'
 import { getImageRandom } from '@app/utils/imageRandom'
 import { Box, Container, HStack, Image, VStack } from '@shadcn/layout'
-import { BadgeInfo, Calendar, Newspaper, Rocket, Sparkles, Telescope } from 'lucide-react'
+import {
+  BadgeInfo,
+  Calendar,
+  Copyright,
+  Newspaper,
+  Rocket,
+  Sparkles,
+  Telescope,
+} from 'lucide-react'
 import { useState } from 'react'
 
 type ModalImageProps = {
@@ -50,23 +58,48 @@ type ModalApodProps = {
 const ModalApod = ({ openModal, setOpenModal, data }: ModalApodProps) => {
   return (
     <Dialog open={openModal} onOpenChange={setOpenModal}>
-      <DialogContent>
-        <DialogHeader>
-          <Title>{data.tituloPT}</Title>
-        </DialogHeader>
-        <DialogDescription>
-          <VStack className="gap-5">
-            <HStack>
-              <div className="w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-xl">
+      <DialogContent
+        className="
+          p-0
+          w-full rounded-none border-none
+          sm:max-w-md
+          md:max-w-lg
+          lg:max-w-2xl
+          "
+      >
+        <DialogDescription className="w-full">
+          <VStack className="gap-5 w-full">
+            <HStack className="w-full relative">
+              <div className="w-full max-w-5xl aspect-[16/9] overflow-hidden ">
                 <Image
-                  className="w-full h-full object-cover object-center rounded-2xl"
+                  className="
+                  w-full h-full object-cover object-center
+                  [mask-image:linear-gradient(to_bottom,black_30%,transparent_100%)]
+                  [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
+                  "
                   src={data?.urlHd ?? getImageRandom()}
                 />
               </div>
+              <Box className="absolute bottom-4 left-4 flex flex-col gap-4">
+                <HStack>
+                  <Text className="font-semibold text-gray-100 text-3xl">{data.tituloPT}</Text>
+                </HStack>
+                <HStack className="gap-5">
+                  <Box className="flex flex-row justify-center items-center gap-1">
+                    <Icon icon={Calendar} size={15} className="" />
+                    <Text className="text-sm">{formatDate(data.data)}</Text>
+                  </Box>
+                  {data.direitosAutorais && (
+                    <Box className="flex flex-row justify-center items-center gap-1">
+                      <Icon icon={Copyright} size={15} className="" />
+                      <Text className="text-sm">{data.direitosAutorais}</Text>
+                    </Box>
+                  )}
+                </HStack>
+              </Box>
             </HStack>
 
-            <hr className="border-1 border-gray-700 w-full" />
-            <HStack className="w-full">
+            <HStack className="w-full p-5">
               <Text className="text-sm md:text-md text-gray-300">{data?.explicacaoPT}</Text>
             </HStack>
           </VStack>
@@ -248,7 +281,7 @@ export function Component() {
           title={data.tituloPT}
         />
       )}
-      <ModalApod openModal={openModalApod} setOpenModal={setOpenModalApod} data={data} />
+      {data && <ModalApod openModal={openModalApod} setOpenModal={setOpenModalApod} data={data} />}
     </AppContainer>
   )
 }

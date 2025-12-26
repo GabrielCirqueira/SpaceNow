@@ -116,3 +116,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes float-icons {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(160px, -180px) rotate(180deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+.animate-float-icons {
+  animation-name: float-icons;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
