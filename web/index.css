@@ -68,7 +68,7 @@
 
 @layer utilities {
   .glow-cosmic {
-    filter: drop-shadow(0 0 4px theme('colors.cosmic.500'));
+    filter: drop-shadow(0 0 4px theme("colors.cosmic.500"));
   }
 
   .border-1 {
@@ -76,19 +76,19 @@
   }
 
   .glow-cosmic-as {
-    filter: drop-shadow(0 0 15px theme('colors.cosmic.500 / 0.2'));
+    filter: drop-shadow(0 0 15px theme("colors.cosmic.500 / 0.2"));
   }
 
   .glow-nebula {
-    filter: drop-shadow(0 0 8px theme('colors.nebula.500'));
+    filter: drop-shadow(0 0 8px theme("colors.nebula.500"));
   }
 
   .shadow-cosmic {
-    box-shadow: 0 0 8px theme('colors.cosmic.500 / 0.6');
+    box-shadow: 0 0 8px theme("colors.cosmic.500 / 0.6");
   }
 
   .shadow-nebula {
-    box-shadow: 0 0 8px theme('colors.nebula.500 / 0.6');
+    box-shadow: 0 0 8px theme("colors.nebula.500 / 0.6");
   }
 
   .duration-900 {

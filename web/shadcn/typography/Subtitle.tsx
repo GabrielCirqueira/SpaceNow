@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { cn } from '@shadcn/lib/utils'
+import * as React from 'react'
 
 export interface SubtitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   as?: 'h2' | 'h3' | 'h4'

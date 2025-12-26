@@ -10,7 +10,7 @@ import {
 } from '@app/shadcn/components'
 import { Icon } from '@app/shadcn/components/icon'
 import { Text } from '@app/shadcn/typography'
-import { NasaApod } from '@app/types/Nasa/apod'
+import type { NasaApod } from '@app/types/Nasa/apod'
 import { formatDate } from '@app/utils/formatDate'
 import { getImageRandom } from '@app/utils/imageRandom'
 import { Box, Container, HStack, Image, VStack } from '@shadcn/layout'
@@ -283,7 +283,9 @@ export function Component() {
                 >
                   <Box className="flex flex-row gap-3 border-gray-500 border-1 px-3 py-1 rounded-3xl">
                     <Icon icon={Calendar} size={16} className="" />
-                    <Text className="text-gray-200 text-xs">{formatDate(data?.data)}</Text>
+                    <Text className="text-gray-200 text-xs">
+                      {data?.data ? formatDate(data.data) : ''}
+                    </Text>
                   </Box>
                 </SkeletonWrapper>
               </HStack>
@@ -292,7 +294,7 @@ export function Component() {
         </HStack>
       </Container>
       <Container
-        className='
+        className="
           flex flex-col items-start
           justify-start gap-7
           bg-red-5100 relative
@@ -303,27 +305,26 @@ export function Component() {
           backdrop-blur-xl
           animate-float-1
           border border-white/10
-          px-8"
-      '
+          px-8
+      "
       >
         <SkeletonWrapper isLoading={isLoadingApod} fallback={<SkeletonBlock />}>
           <Box className="py-6 grid grid-cols-3 gap-6">
-            {dataApod.map((apod) => (
-              <Box className="bg-black/40 border border-white/20 rounded-lg">
+            {dataApod?.map((apod) => (
+              <Box key={apod.data} className="bg-black/40 border border-white/20 rounded-lg">
                 <VStack className="gap-5 pb-5">
                   <HStack>
                     <div className="w-full max-w-5xl aspect-[16/9] overflow-hidden ">
                       <Image
                         className="
-                        w-full h-full object-cover object-center rounded-lg
-                        [mask-image:linear-gradient(to_bottom,black_30%,transparent_100%)]
-                        [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
-                      "
-                        src={apod.urlHd ?? apod.url}
+                          w-full h-full object-cover object-center rounded-lg
+                          [mask-image:linear-gradient(to_bottom,black_30%,transparent_100%)]
+                          [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
+                        "
+                        src={apod.urlHd ?? apod.url ?? ''}
                       />
                     </div>
                   </HStack>
-                  <HStack></HStack>
                   <HStack className="px-3">
                     <VStack>
                       <Text className="text-gray-100 font-semibold text-sm line-clamp-3">

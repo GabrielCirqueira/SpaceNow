@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { cn } from '@shadcn/lib/utils'
+import * as React from 'react'
 
 export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string

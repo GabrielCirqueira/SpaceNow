@@ -1,7 +1,7 @@
-import * as React from 'react'
 import { Box } from '@shadcn/layout'
-import { Caption } from '@shadcn/typography'
 import { cn } from '@shadcn/lib/utils'
+import { Caption } from '@shadcn/typography'
+import * as React from 'react'
 
 export interface FooterProps extends React.HTMLAttributes<HTMLElement> {}
 

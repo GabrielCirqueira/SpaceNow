@@ -3,10 +3,10 @@ import { MainLayout } from '@app/layouts'
 import { queryClient } from '@app/lib/queryClient'
 import { QueryClientProvider } from '@tanstack/react-query'
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
   Route,
   RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
 } from 'react-router-dom'
 
 const router = createBrowserRouter(

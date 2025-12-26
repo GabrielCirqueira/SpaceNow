@@ -1,6 +1,6 @@
+import Particles from '@app/components/Particles/Stars/Particles'
 import { FloatingIconsBackground } from '@app/components/layout/FloatingIconsBackground'
 import Header from '@app/components/layout/Header'
-import Particles from '@app/components/Particles/Stars/Particles'
 import { Box } from '@shadcn/layout'
 import { cn } from '@shadcn/lib/utils'
 import * as React from 'react'
