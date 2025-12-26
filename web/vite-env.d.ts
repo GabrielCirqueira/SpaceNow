@@ -4,6 +4,8 @@ declare module '@fontsource/lato'
 declare module '@fontsource/poppins'
 declare module '@fontsource-variable/roboto'
 declare module '@fontsource-variable/inter'
+declare module '@fontsource/sora'
+declare module '@fontsource/inter'
 
 declare module '@shadcn/*'
 declare module '@shadcn/lib/*'
