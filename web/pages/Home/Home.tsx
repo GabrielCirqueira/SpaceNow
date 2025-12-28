@@ -18,6 +18,7 @@ import {
   BadgeInfo,
   Calendar,
   Copyright,
+  Info,
   Newspaper,
   Rocket,
   Sparkles,
@@ -52,6 +53,10 @@ type ModalApodProps = {
 }
 
 const ModalApod = ({ openModal, setOpenModal, data }: ModalApodProps) => {
+  if (!data) {
+    return
+  }
+
   return (
     <Dialog open={openModal} onOpenChange={setOpenModal}>
       <DialogContent
@@ -112,6 +117,7 @@ export function Component() {
   const { data: dataApod, isLoading: isLoadingApod } = useApod()
   const [openModalImage, setOpenModalImage] = useState(false)
   const [openModalApod, setOpenModalApod] = useState(false)
+  const [selectApod, setSelectApod] = useState<NasaApod | undefined>(undefined)
 
   console.log(dataApod)
 
@@ -268,7 +274,10 @@ export function Component() {
                 >
                   <Button
                     className="w-1/3 bg-gradient-to-r from-cosmic-500 via-cosmic-600 to-nebula-700"
-                    onClick={() => setOpenModalApod(true)}
+                    onClick={() => {
+                      setSelectApod(data)
+                      setOpenModalApod(true)
+                    }}
                   >
                     <Icon icon={BadgeInfo} className="stroke-gray-100" />
                     <Text className="text-gray-50">Ver mais</Text>
@@ -287,6 +296,17 @@ export function Component() {
                       {data?.data ? formatDate(data.data) : ''}
                     </Text>
                   </Box>
+                </SkeletonWrapper>
+                <SkeletonWrapper
+                  isLoading={isLoading}
+                  fallback={<SkeletonBlock className="w-1/3 h-7 rounded-2xl" />}
+                >
+                  {data?.direitosAutorais && (
+                    <Box className="flex flex-row gap-3 border-nebula-600 border-1 px-3 py-1 rounded-3xl">
+                      <Icon icon={Copyright} size={16} className="stroke-nebula-600" />
+                      <Text className="text-nebula-600 text-xs">{data?.direitosAutorais}</Text>
+                    </Box>
+                  )}
                 </SkeletonWrapper>
               </HStack>
             </VStack>
@@ -314,7 +334,7 @@ export function Component() {
               <Box key={apod.data} className="bg-black/40 border border-white/20 rounded-lg">
                 <VStack className="gap-5 pb-5">
                   <HStack>
-                    <div className="w-full max-w-5xl aspect-[16/9] overflow-hidden ">
+                    <div className="w-full max-w-5xl aspect-[16/9] overflow-hidden relative">
                       <Image
                         className="
                           w-full h-full object-cover object-center rounded-lg
@@ -323,6 +343,17 @@ export function Component() {
                         "
                         src={apod.urlHd ?? apod.url ?? ''}
                       />
+                      <Box
+                        className="
+                          absolute bottom-1 left-2 flex
+                          gap-3 bg-cosmic-500/20 border-cosmic-500
+                          border-1 px-2 py-1 rounded-xl
+                          lex-row justify-center items-center
+                        "
+                      >
+                        <Icon icon={Calendar} size={10} className="stroke-nebula-500" />
+                        <Text className="text-gray-200 text-2xs">{formatDate(apod.data)}</Text>
+                      </Box>
                     </div>
                   </HStack>
                   <HStack className="px-3">
@@ -334,6 +365,22 @@ export function Component() {
                         {apod.explicacaoPT}
                       </Text>
                     </VStack>
+                  </HStack>
+                  <HStack className="w-full justify-center">
+                    <Button
+                      className="
+                        w-11/12 bg-gradient-to-r
+                        from-cosmic-600 to-nebula-600 hover:from-cosmic-700
+                        hover:to-nebula-700 transition-all duration-700 ease-in
+                      "
+                      onClick={() => {
+                        setSelectApod(apod)
+                        setOpenModalApod(true)
+                      }}
+                    >
+                      <Icon icon={Info} className="stroke-nebula-100" />
+                      <Text className="text-nebula-100 font-semibold">Ver Mais</Text>
+                    </Button>
                   </HStack>
                 </VStack>
               </Box>
@@ -349,7 +396,7 @@ export function Component() {
           title={data.tituloPT}
         />
       )}
-      {data && <ModalApod openModal={openModalApod} setOpenModal={setOpenModalApod} data={data} />}
+      <ModalApod openModal={openModalApod} setOpenModal={setOpenModalApod} data={selectApod} />
     </AppContainer>
   )
 }
